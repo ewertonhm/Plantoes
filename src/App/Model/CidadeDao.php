@@ -8,10 +8,10 @@ class CidadeDao
 {
     public function create(Cidade $cidade)
     {
-        $sql = 'INSERT INTO cidade VALUES (?)';
+        $sql = 'INSERT INTO cidade(nome) VALUES (?)';
         $enviar = Conexao::getConexao()->prepare($sql);
 
-        $enviar->bindValue(2, $cidade->getNome());
+        $enviar->bindValue(1, $cidade->getNome());
 
         $enviar->execute();
     }

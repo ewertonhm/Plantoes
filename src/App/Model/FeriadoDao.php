@@ -8,7 +8,7 @@ class FeriadoDao
 {
     public function create(Feriado $feriado)
     {
-        $sql = 'INSERT INTO feriado VALUES (?,?,?)';
+        $sql = 'INSERT INTO feriado(nome, data, cidade_id) VALUES (?,?,?)';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->bindValue(1, $feriado->getNome());

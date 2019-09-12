@@ -8,7 +8,7 @@ class JuizDao
 {
     public function create(Juiz $juiz)
     {
-        $sql = 'INSERT INTO juiz VALUES (?,?)';
+        $sql = 'INSERT INTO juiz(nome, cidade_id) VALUES (?,?)';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->bindValue(1, $juiz->getNome());

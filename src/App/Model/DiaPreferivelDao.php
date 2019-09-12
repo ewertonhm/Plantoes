@@ -9,7 +9,7 @@ class DiaPreferivelDao Implements Dao
 
     public function create(Dia $dia)
     {
-        $sql = 'INSERT INTO diaprefererivel VALUES (?,?)';
+        $sql = 'INSERT INTO diaprefererivel(data, juiz_id) VALUES (?,?)';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->bindValue(1, $dia->getData());

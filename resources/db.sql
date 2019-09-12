@@ -39,5 +39,16 @@ CREATE TABLE diaprefererivel(
 CREATE TABLE plantao(
     id SERIAL PRIMARY KEY,
     data DATE,
+    ano INT,
+    semana INT,
     juiz_id INTEGER REFERENCES juiz(id)
+);
+
+CREATE TABLE plantao_juiz(
+    id SERIAL PRIMARY KEY,
+    coeficiente_de_plantoes INT,
+    ano INT,
+    numero_de_plantoes_realizados INT,
+    semana_ultimo_plantao INT,
+    juiz_id INT REFERENCES juiz(id)
 );

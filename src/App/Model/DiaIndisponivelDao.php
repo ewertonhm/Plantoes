@@ -9,7 +9,7 @@ class DiaIndisponivelDao
 
     public function create(Dia $dia)
     {
-        $sql = 'INSERT INTO diaindisponivel VALUES (?,?)';
+        $sql = 'INSERT INTO diaindisponivel(data, juiz_id) VALUES (?,?)';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->bindValue(1, $dia->getData());

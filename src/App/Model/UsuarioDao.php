@@ -4,11 +4,11 @@
 namespace App\Model;
 
 
-class UsuarioDao Implements Dao
+class UsuarioDao
 {
     public function create(Usuario $usuario)
     {
-        $sql = 'INSERT INTO usuario VALUES (?,?)';
+        $sql = 'INSERT INTO usuario(login, password) VALUES (?,?)';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->bindValue(1, $usuario->getLogin());

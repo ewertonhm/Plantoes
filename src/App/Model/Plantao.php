@@ -6,7 +6,7 @@ namespace App\Model;
 
 class Plantao
 {
-    private $id, $data, $juiz_id;
+    private $id, $data, $ano, $semana, $juiz_id;
 
     /**
      * @return mixed
@@ -54,6 +54,38 @@ class Plantao
     public function setJuizId($juiz_id)
     {
         $this->juiz_id = $juiz_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAno()
+    {
+        return $this->ano;
+    }
+
+    /**
+     * @param mixed $ano
+     */
+    public function setAno($ano)
+    {
+        $this->ano = $ano;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSemana()
+    {
+        return $this->semana;
+    }
+
+    /**
+     * @param mixed $semana
+     */
+    public function setSemana($semana)
+    {
+        $this->semana = $semana;
     }
 
 
