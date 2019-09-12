@@ -51,6 +51,22 @@ class PlantaoJuizDao
         return [];
     }
 
+    public function readWithJuizId(PlantaoJuiz $pj){
+        $sql = 'SELECT * FROM plantao_juiz WHERE ano = ? AND juiz_id = ?';
+        $enviar = Conexao::getConexao()->prepare($sql);
+
+        $enviar->bindValue(1,$pj->getAno());
+        $enviar->bindValue(2,$pj->getJuizId());
+
+        $enviar->execute();
+
+        if($enviar->rowCount() > 0){
+            $resultado = $enviar->fetchAll(\PDO::FETCH_ASSOC);
+            return $resultado[0];
+        }
+        return [];
+    }
+
     public function update(PlantaoJuiz $pj)
     {
         $sql = 'UPDATE plantao_juiz SET coeficiente_de_plantoes = ?, ano = ?, numero_de_plantoes_realizados = ?, semana_ultimo_plantao = ?, juiz_id = ? where id = ?';
