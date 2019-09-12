@@ -4,22 +4,23 @@
 namespace App\Model;
 
 
-class GenericoDao
+class PlantaoDao
 {
-    public function create(Generico $g)
+
+    public function create(Plantao $plantao)
     {
-        $sql = 'INSERT INTO generico VALUES (?,?,?)';
+        $sql = 'INSERT INTO plantao VALUES (?,?)';
         $enviar = Conexao::getConexao()->prepare($sql);
 
-        $enviar->bindValue(1, $g->getId());
-        $enviar->bindValue(2, $g->getNome());
-        $enviar->bindValue(3, $g->getEtc());
+        $enviar->bindValue(1, $plantao->getData());
+        $enviar->bindValue(2, $plantao->getJuizId());
 
         $enviar->execute();
     }
+
     public function read()
     {
-        $sql = 'SELECT * FROM generico';
+        $sql = 'SELECT * FROM plantao';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->execute();
@@ -30,9 +31,10 @@ class GenericoDao
         }
         return [];
     }
+
     public function readFirst($id)
     {
-        $sql = 'SELECT * FROM juiz WHERE id = ?';
+        $sql = 'SELECT * FROM plantao WHERE id = ?';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->bindValue(1,$id);
@@ -45,26 +47,27 @@ class GenericoDao
         }
         return [];
     }
-    public function update(Generico $g)
+
+    public function update(Plantao $plantao)
     {
-        $sql = 'UPDATE generico SET nome = ?, etc = ? where id = ?';
+        $sql = 'UPDATE plantao SET data = ?, juiz_id = ? where id = ?';
 
         $enviar = Conexao::getConexao()->prepare($sql);
 
-        $enviar->bindValue(1, $g->getNome());
-        $enviar->bindValue(2, $g->getEtc());
-        $enviar->bindValue(3, $g->getId());
-
-        $enviar->execute();
-    }
-    public function delete($codigo)
-    {
-        $sql = 'DELETE FROM generico WHERE id = ?';
-        $enviar = Conexao::getConexao()->prepare($sql);
-
-        $enviar->bindValue(1, $g->getId());
+        $enviar->bindValue(1, $plantao->getData());
+        $enviar->bindValue(2, $plantao->getJuizId());
+        $enviar->bindValue(3, $plantao->getId());
 
         $enviar->execute();
     }
 
+    public function delete(Plantao $plantao)
+    {
+        $sql = 'DELETE FROM plantao WHERE id = ?';
+        $enviar = Conexao::getConexao()->prepare($sql);
+
+        $enviar->bindValue(1, $plantao->getId());
+
+        $enviar->execute();
+    }
 }

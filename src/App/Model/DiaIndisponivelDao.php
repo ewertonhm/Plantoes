@@ -4,22 +4,23 @@
 namespace App\Model;
 
 
-class GenericoDao
+class DiaIndisponivelDao
 {
-    public function create(Generico $g)
+
+    public function create(Dia $dia)
     {
-        $sql = 'INSERT INTO generico VALUES (?,?,?)';
+        $sql = 'INSERT INTO diaindisponivel VALUES (?,?)';
         $enviar = Conexao::getConexao()->prepare($sql);
 
-        $enviar->bindValue(1, $g->getId());
-        $enviar->bindValue(2, $g->getNome());
-        $enviar->bindValue(3, $g->getEtc());
+        $enviar->bindValue(1, $dia->getData());
+        $enviar->bindValue(2, $dia->getJuizId());
 
         $enviar->execute();
     }
+
     public function read()
     {
-        $sql = 'SELECT * FROM generico';
+        $sql = 'SELECT * FROM diaindisponivel';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->execute();
@@ -30,9 +31,10 @@ class GenericoDao
         }
         return [];
     }
+
     public function readFirst($id)
     {
-        $sql = 'SELECT * FROM juiz WHERE id = ?';
+        $sql = 'SELECT * FROM diaindisponivel WHERE id = ?';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->bindValue(1,$id);
@@ -45,26 +47,27 @@ class GenericoDao
         }
         return [];
     }
-    public function update(Generico $g)
+
+    public function update(Dia $dia)
     {
-        $sql = 'UPDATE generico SET nome = ?, etc = ? where id = ?';
+        $sql = 'UPDATE diaindisponivel SET data = ?, juiz_id = ? where id = ?';
 
         $enviar = Conexao::getConexao()->prepare($sql);
 
-        $enviar->bindValue(1, $g->getNome());
-        $enviar->bindValue(2, $g->getEtc());
-        $enviar->bindValue(3, $g->getId());
-
-        $enviar->execute();
-    }
-    public function delete($codigo)
-    {
-        $sql = 'DELETE FROM generico WHERE id = ?';
-        $enviar = Conexao::getConexao()->prepare($sql);
-
-        $enviar->bindValue(1, $g->getId());
+        $enviar->bindValue(1, $dia->getData());
+        $enviar->bindValue(2, $dia->getJuizId());
+        $enviar->bindValue(3, $dia->getId());
 
         $enviar->execute();
     }
 
+    public function delete(Dia $dia)
+    {
+        $sql = 'DELETE FROM diaindisponivel WHERE id = ?';
+        $enviar = Conexao::getConexao()->prepare($sql);
+
+        $enviar->bindValue(1, $dia->getId());
+
+        $enviar->execute();
+    }
 }

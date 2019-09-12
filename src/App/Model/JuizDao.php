@@ -4,22 +4,22 @@
 namespace App\Model;
 
 
-class GenericoDao
+class JuizDao
 {
-    public function create(Generico $g)
+    public function create(Juiz $juiz)
     {
-        $sql = 'INSERT INTO generico VALUES (?,?,?)';
+        $sql = 'INSERT INTO juiz VALUES (?,?)';
         $enviar = Conexao::getConexao()->prepare($sql);
 
-        $enviar->bindValue(1, $g->getId());
-        $enviar->bindValue(2, $g->getNome());
-        $enviar->bindValue(3, $g->getEtc());
+        $enviar->bindValue(1, $juiz->getNome());
+        $enviar->bindValue(2, $juiz->getCidadeId());
 
         $enviar->execute();
     }
+
     public function read()
     {
-        $sql = 'SELECT * FROM generico';
+        $sql = 'SELECT * FROM juiz';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->execute();
@@ -30,6 +30,7 @@ class GenericoDao
         }
         return [];
     }
+
     public function readFirst($id)
     {
         $sql = 'SELECT * FROM juiz WHERE id = ?';
@@ -45,26 +46,27 @@ class GenericoDao
         }
         return [];
     }
-    public function update(Generico $g)
+
+    public function update(Juiz $juiz)
     {
-        $sql = 'UPDATE generico SET nome = ?, etc = ? where id = ?';
+        $sql = 'UPDATE juiz SET nome = ?, cidade_id = ? where id = ?';
 
         $enviar = Conexao::getConexao()->prepare($sql);
 
-        $enviar->bindValue(1, $g->getNome());
-        $enviar->bindValue(2, $g->getEtc());
-        $enviar->bindValue(3, $g->getId());
-
-        $enviar->execute();
-    }
-    public function delete($codigo)
-    {
-        $sql = 'DELETE FROM generico WHERE id = ?';
-        $enviar = Conexao::getConexao()->prepare($sql);
-
-        $enviar->bindValue(1, $g->getId());
+        $enviar->bindValue(1, $juiz->getNome());
+        $enviar->bindValue(2, $juiz->getCidadeId());
+        $enviar->bindValue(3, $juiz->getId());
 
         $enviar->execute();
     }
 
+    public function delete(Juiz $juiz)
+    {
+        $sql = 'DELETE FROM juiz WHERE id = ?';
+        $enviar = Conexao::getConexao()->prepare($sql);
+
+        $enviar->bindValue(1, $juiz->getId());
+
+        $enviar->execute();
+    }
 }

@@ -4,22 +4,21 @@
 namespace App\Model;
 
 
-class GenericoDao
+class CidadeDao
 {
-    public function create(Generico $g)
+    public function create(Cidade $cidade)
     {
-        $sql = 'INSERT INTO generico VALUES (?,?,?)';
+        $sql = 'INSERT INTO cidade VALUES (?)';
         $enviar = Conexao::getConexao()->prepare($sql);
 
-        $enviar->bindValue(1, $g->getId());
-        $enviar->bindValue(2, $g->getNome());
-        $enviar->bindValue(3, $g->getEtc());
+        $enviar->bindValue(2, $cidade->getNome());
 
         $enviar->execute();
     }
+
     public function read()
     {
-        $sql = 'SELECT * FROM generico';
+        $sql = 'SELECT * FROM cidade';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->execute();
@@ -30,9 +29,10 @@ class GenericoDao
         }
         return [];
     }
+
     public function readFirst($id)
     {
-        $sql = 'SELECT * FROM juiz WHERE id = ?';
+        $sql = 'SELECT * FROM cidade WHERE id = ?';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->bindValue(1,$id);
@@ -45,26 +45,27 @@ class GenericoDao
         }
         return [];
     }
-    public function update(Generico $g)
-    {
-        $sql = 'UPDATE generico SET nome = ?, etc = ? where id = ?';
 
+    public function update(Cidade $cidade)
+    {
+        $sql = 'UPDATE cidade SET nome = ? where id = ?';
+
+        $sql = 'INSERT INTO cidade VALUES (?,?)';
         $enviar = Conexao::getConexao()->prepare($sql);
 
-        $enviar->bindValue(1, $g->getNome());
-        $enviar->bindValue(2, $g->getEtc());
-        $enviar->bindValue(3, $g->getId());
-
-        $enviar->execute();
-    }
-    public function delete($codigo)
-    {
-        $sql = 'DELETE FROM generico WHERE id = ?';
-        $enviar = Conexao::getConexao()->prepare($sql);
-
-        $enviar->bindValue(1, $g->getId());
+        $enviar->bindValue(2, $cidade->getId());
+        $enviar->bindValue(1, $cidade->getNome());
 
         $enviar->execute();
     }
 
+    public function delete(Cidade $cidade)
+    {
+        $sql = 'DELETE FROM cidade WHERE id = ?';
+        $enviar = Conexao::getConexao()->prepare($sql);
+
+        $enviar->bindValue(1, $cidade->getId());
+
+        $enviar->execute();
+    }
 }

@@ -4,24 +4,24 @@
 namespace App\Model;
 
 
-class Generico
+class Juiz
 {
-    private $codigo, $nome, $etc;
+    private $id, $nome, $cidade_id;
 
     /**
      * @return mixed
      */
-    public function getCodigo()
+    public function getId()
     {
-        return $this->codigo;
+        return $this->id;
     }
 
     /**
-     * @param mixed $codigo
+     * @param mixed $id
      */
-    public function setCodigo($codigo)
+    public function setId($id)
     {
-        $this->codigo = $codigo;
+        $this->id = $id;
     }
 
     /**
@@ -43,17 +43,17 @@ class Generico
     /**
      * @return mixed
      */
-    public function getEtc()
+    public function getCidadeId()
     {
-        return $this->etc;
+        return $this->cidade_id;
     }
 
     /**
-     * @param mixed $etc
+     * @param mixed $cidade_id
      */
-    public function setEtc($etc)
+    public function setCidadeId($cidade_id)
     {
-        $this->etc = $etc;
+        $this->cidade_id = $cidade_id;
     }
 
 
