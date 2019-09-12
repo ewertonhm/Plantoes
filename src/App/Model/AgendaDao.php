@@ -82,6 +82,21 @@ class AgendaDao
         }
         return [];
     }
+    public function readWithDay(Agenda $agenda)
+    {
+        $sql = 'SELECT * FROM agenda WHERE data_inicio = ?';
+        $enviar = Conexao::getConexao()->prepare($sql);
+
+        $enviar->bindValue(1,$agenda->getDataInicio());
+
+        $enviar->execute();
+
+        if($enviar->rowCount() > 0){
+            $resultado = $enviar->fetchAll(\PDO::FETCH_ASSOC);
+            return $resultado[0];
+        }
+        return [];
+    }
 
     public function update(Agenda $agenda)
     {

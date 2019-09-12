@@ -46,6 +46,21 @@ class FeriadoDao
         }
         return [];
     }
+    public function readCidade($cidade_id)
+    {
+        $sql = 'SELECT * FROM feriado WHERE cidade_id = ?';
+        $enviar = Conexao::getConexao()->prepare($sql);
+
+        $enviar->bindValue(1,$cidade_id);
+
+        $enviar->execute();
+
+        if($enviar->rowCount() > 0){
+            $resultado = $enviar->fetchAll(\PDO::FETCH_ASSOC);
+            return $resultado;
+        }
+        return [];
+    }
 
     public function update(Feriado $feriado)
     {

@@ -41,5 +41,39 @@ class Agenda
             $week++;
         }
     }
+    public function marcarAgenda($dataInicio, $juizId)
+    {
+        $agenda = new \App\Model\Agenda();
+        $agendaCrud = new AgendaDao();
+
+        $agenda->setDataInicio($dataInicio);
+        $agenda->setJuizId($juizId);
+
+        $dados = $agendaCrud->readWithDay($agenda);
+        $agenda->setAno($dados['ano']);
+        $agenda->setDataFim($dados['data_fim']);
+        $agenda->setSemana($dados['semana']);
+        $agenda->setId($dados['id']);
+        $agenda->setJuizId($juizId);
+
+        $agendaCrud->update($agenda);
+    }
+    public function desmarcarAgenda($dataInicio)
+    {
+        $agenda = new \App\Model\Agenda();
+        $agendaCrud = new AgendaDao();
+
+        $agenda->setDataInicio($dataInicio);
+
+        $dados = $agendaCrud->readWithDay($agenda);
+        var_dump($dados);
+        $agenda->setAno($dados['ano']);
+        $agenda->setDataFim($dados['data_fim']);
+        $agenda->setSemana($dados['semana']);
+        $agenda->setId($dados['id']);
+        $agenda->setJuizId(NULL);
+
+        $agendaCrud->update($agenda);
+    }
 
 }
