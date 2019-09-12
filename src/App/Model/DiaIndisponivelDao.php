@@ -47,6 +47,21 @@ class DiaIndisponivelDao
         }
         return [];
     }
+    public function readJuiz($juiz_id)
+    {
+        $sql = 'SELECT * FROM diaindisponivel WHERE juiz_id = ?';
+        $enviar = Conexao::getConexao()->prepare($sql);
+
+        $enviar->bindValue(1,$juiz_id);
+
+        $enviar->execute();
+
+        if($enviar->rowCount() > 0){
+            $resultado = $enviar->fetchAll(\PDO::FETCH_ASSOC);
+            return $resultado;
+        }
+        return [];
+    }
 
     public function update(Dia $dia)
     {
