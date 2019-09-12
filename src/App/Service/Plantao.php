@@ -12,8 +12,13 @@ class Plantao
     public function IncrementarCoeficiente($juiz_id){
         $juiz = new Juiz();
         $juiz->setId($juiz_id);
-        $juizdata = new JuizDao($juiz);
-        $juizdata->readFirst($juiz->getId());
+        $juizCrud = new JuizDao();
+        $juizData = $juizCrud->readFirst($juiz->getId());
+        $juiz->setNome($juizData['nome']);
+        $juiz->setCidadeId($juizData['cidade_id']);
+        var_dump($juiz);
+
+
 
 
     }

@@ -42,7 +42,7 @@ class FeriadoDao
 
         if($enviar->rowCount() > 0){
             $resultado = $enviar->fetchAll(\PDO::FETCH_ASSOC);
-            return $resultado;
+            return $resultado[0];
         }
         return [];
     }
@@ -58,7 +58,8 @@ class FeriadoDao
         $enviar->bindValue(3, $feriado->getCidadeId());
         $enviar->bindValue(4, $feriado->getId());
 
-        $enviar->execute();    }
+        $enviar->execute();
+    }
 
     public function delete(Feriado $feriado)
     {

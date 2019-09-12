@@ -42,7 +42,7 @@ class JuizDao
 
         if($enviar->rowCount() > 0){
             $resultado = $enviar->fetchAll(\PDO::FETCH_ASSOC);
-            return $resultado;
+            return $resultado[0];
         }
         return [];
     }
