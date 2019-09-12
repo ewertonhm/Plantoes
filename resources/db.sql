@@ -52,3 +52,12 @@ CREATE TABLE plantao_juiz(
     semana_ultimo_plantao INT,
     juiz_id INT REFERENCES juiz(id)
 );
+
+CREATE TABLE agenda(
+    id SERIAL PRIMARY KEY,
+    data_inicio DATE,
+    data_fim DATE,
+    semana INT,
+    ano INT,
+    juiz_id INT REFERENCES juiz(id)
+);
