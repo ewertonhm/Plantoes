@@ -1,52 +1,45 @@
 <?php
 
-use App\Model\Juiz;
+use App\Model\Agenda;
+use App\Model\AgendaDao;
 use App\Model\JuizDao;
-use App\Service\Agenda;
-use App\Service\Plantonista;
-
+use App\Model\Plantao;
+use App\Model\PlantaoDao;
+use App\View\Foot;
+use App\View\Head;
+use App\View\Navbar;
+use App\View\Tabela;
 
 require_once 'vendor/autoload.php';
 
-$juiz = new Juiz();
-$juiz->setId(rand(1,10));
+$login = new \App\Controller\Login();
 
-$juizCrud = new JuizDao();
-$dados = $juizCrud->readFirst($juiz->getId());
-$juiz->setNome($dados['nome']);
-echo $juiz->getNome();
-echo "<br>";
-
-
-
-$agenda = new \App\Model\Agenda();
-$agenda->setDataInicio('2019-01-01');
-$agenda->setDataFim('2019-01-07');
-
-$plantonista = new Plantonista();
-
-if($plantonista->verificaFeriado($juiz, $agenda)){
-    echo "<br>";
-    echo "feriado";
-    echo "<br>";
+if(!$login->isLogged()){
+    header('location: login.php');
 } else {
-    echo "<br>";
-    echo "não é feriado";
-    echo "<br>";
+    $header = new Head('bar','Pagina Inicial');
+    $navbar = new Navbar();
+
+
+    $agendaCrud = new AgendaDao();
+
+    $juizCrud = new JuizDao();
+    $juizes = $juizCrud->read();
+    $juiz = [];
+
+    foreach ($juizes as $j){
+        $juiz[] = $j['nome'];
+    }
+
+    // Table
+    $header = ['INICIO','FIM','JUIZ'];
+    $fields = ['data_inicio','data_fim','juiz_id'];
+    $body = $agendaCrud->read();
+
+    $table = new Tabela($header,$fields,$body,$juiz);
+
+    $footer = new Foot();
 }
-
-if($plantonista->verificaDiaIndisponivel($juiz, $agenda)){
-    echo "<br>";
-    echo "indisponivel";
-    echo "<br>";
-} else {
-    echo "<br>";
-    echo "disponível";
-    echo "<br>";
-}
-
-echo "<br>";
-
 
 
 ?>

@@ -22,7 +22,7 @@ class AgendaDao
 
     public function read()
     {
-        $sql = 'SELECT * FROM agenda';
+        $sql = 'SELECT * FROM agenda ORDER BY data_inicio';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->execute();
@@ -36,7 +36,7 @@ class AgendaDao
 
     public function readFirst($id)
     {
-        $sql = 'SELECT * FROM agenda WHERE id = ?';
+        $sql = 'SELECT * FROM agenda WHERE id = ? ';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->bindValue(1,$id);
@@ -52,7 +52,7 @@ class AgendaDao
 
     public function readWithJuizId(Agenda $agenda)
     {
-        $sql = 'SELECT * FROM agenda WHERE ano = ? AND juiz_id = ?';
+        $sql = 'SELECT * FROM agenda WHERE ano = ? AND juiz_id = ? ORDER BY data_inicio';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->bindValue(1,$agenda->getAno());
@@ -69,7 +69,7 @@ class AgendaDao
 
     public function readWithYear(Agenda $agenda)
     {
-        $sql = 'SELECT * FROM agenda WHERE ano = ?';
+        $sql = 'SELECT * FROM agenda WHERE ano = ? ORDER BY data_inicio';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->bindValue(1,$agenda->getAno());
@@ -84,7 +84,7 @@ class AgendaDao
     }
     public function readWithDay(Agenda $agenda)
     {
-        $sql = 'SELECT * FROM agenda WHERE data_inicio = ?';
+        $sql = 'SELECT * FROM agenda WHERE data_inicio = ? ORDER BY data_inicio';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->bindValue(1,$agenda->getDataInicio());

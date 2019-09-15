@@ -10,7 +10,7 @@ $login = new \App\Controller\Login();
 if($login->isLogged()){
     header('location: index.php');
 } else {
-    $head = new Head();
+    $head = new Head('login','Login');
     $body = new Login();
     $foot = new Foot();
     if(isset($_POST['btn-login'])){
