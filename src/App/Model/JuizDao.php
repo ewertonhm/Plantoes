@@ -19,7 +19,7 @@ class JuizDao
 
     public function read()
     {
-        $sql = 'SELECT * FROM juiz';
+        $sql = 'SELECT * FROM juiz ORDER BY id';
         $enviar = Conexao::getConexao()->prepare($sql);
 
         $enviar->execute();
