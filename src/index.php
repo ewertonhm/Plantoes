@@ -17,7 +17,7 @@ $login = new \App\Controller\Login();
 if(!$login->isLogged()){
     header('location: login.php');
 } else {
-    $header = new Head('bar');
+    $header = new Head('bar','Pagina Inicial');
     $navbar = new Navbar();
 
 
