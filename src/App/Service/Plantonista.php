@@ -94,4 +94,7 @@ class Plantonista
         }
         return false;
     }
+    public function sequencia(){
+
+    }
 }
