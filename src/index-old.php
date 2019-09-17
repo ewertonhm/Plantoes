@@ -1,14 +1,13 @@
 <?php
+require_once 'vendor/autoload.php';
 
+$login = new \App\Controller\Login();
 
-namespace App\View;
+if(!$login->isLogged()){
+    header('location: login.php');
+}
 
-
-class LayoutPadrao
-{
-    public function inicio($title)
-    {
-        echo <<<TAG
+?>
 <!doctype html>
 <!--
   Material Design Lite
@@ -32,11 +31,7 @@ class LayoutPadrao
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>
-TAG;
-    echo $title;
-    echo <<<TAG
-    </title>
+    <title>Agenda - Inicio</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -80,11 +75,7 @@ TAG;
       <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <!-- BARRA SUPERIOR INICIO -->
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">
-TAG;
-        echo $title;
-        echo <<<TAG
-        </span>
+          <span class="mdl-layout-title">Inicio</span>
           <div class="mdl-layout-spacer"></div>
          <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
@@ -111,11 +102,11 @@ TAG;
           <!--<img src="assets/images/user.jpg" class="demo-avatar">-->
           <div class="demo-avatar-dropdown">
             <span>
-TAG;
-        $user = new \App\Model\UsuarioDao();
-        $usuario = $user->readFirst($_SESSION['user_id']);
-        echo $usuario['login'];
-        echo <<<TAG
+                <?php
+                    $user = new \App\Model\UsuarioDao();
+                    $usuario = $user->readFirst($_SESSION['user_id']);
+                    echo $usuario['login'];
+                ?>
             </span>
             <div class="mdl-layout-spacer"></div>
             <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
@@ -123,17 +114,18 @@ TAG;
               <span class="visuallyhidden">Accounts</span>
             </button>
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-TAG;
-        $usuarios = $user->read();
-        foreach ($usuarios as $usuario){
-            echo "<a class='mdl-navigation__link' href='change-user.php?id=";
-            echo $usuario['id'];
-            echo"'> ";
-            echo "<li class='mdl-menu__item'>";
-            echo $usuario['login'];
-            echo "</li></a>";
-        }
-        echo <<<TAG
+              <?php
+                $user = new \App\Model\UsuarioDao();
+                $usuarios = $user->read();
+                foreach ($usuarios as $usuario){
+                    echo "<a class='mdl-navigation__link' href='change-user.php?id=";
+                    echo $usuario['id'];
+                    echo"'> ";
+                    echo "<li class='mdl-menu__item'>";
+                    echo $usuario['login'];
+                    echo "</li></a>";
+                }
+              ?>
               <a class="mdl-navigation__link" href="cadastrar-usuario.php"><li class="mdl-menu__item"><i class="material-icons">add</i>Adicionar usuário</li></a>
             </ul>
           </div>
@@ -154,11 +146,35 @@ TAG;
       <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid content"><!-- DIV DA AREA LATERAL FIM -->
         <!-- CONTUDO INICIO -->
-TAG;
-    }
+            <?php
 
-    public function fim(){
-        echo <<<TAG
+            use App\Model\AgendaDao;
+            use App\Model\JuizDao;
+            use App\Model\UsuarioDao;
+            use App\View\Tabela;
+
+            require_once 'vendor/autoload.php';
+
+
+
+            $agendaCrud = new AgendaDao();
+
+            $juizCrud = new JuizDao();
+            $juizes = $juizCrud->read();
+            $juiz = [];
+
+            foreach ($juizes as $j){
+                $juiz[] = $j['nome'];
+            }
+
+            // Table
+            $header = ['INICIO','FIM','JUIZ'];
+            $fields = ['data_inicio','data_fim','juiz_id'];
+            $body = $agendaCrud->read();
+
+            $table = new Tabela($header,$fields,$body,$juiz);
+
+            ?>
         <!-- CONTEUDO FIM  -->
         </div>
       </main>
@@ -213,8 +229,3 @@ TAG;
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </body>
 </html>
-TAG;
-
-}
-
-}
