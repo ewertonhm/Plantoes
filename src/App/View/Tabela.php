@@ -13,12 +13,12 @@ class Tabela
             return true;
         }
         echo "
-        <table class='table'>
+        <table class='mdl-data-table mdl-js-data-table'>
         <thead>
         <tr>
         ";
         foreach ($header as $head){
-            echo "<th scope='col'>$head</th>";
+            echo "<th class='mdl-data-table__cell--non-numeric'>$head</th>";
         }
         echo "
         </tr>
@@ -31,9 +31,10 @@ class Tabela
             // para cada campo da tabela
             foreach ($fields as $field){
                 if($field == 'juiz_id' AND $item['juiz_id'] != NULL){
-                    echo "<td>$juiz[$item]</td>";
+                    $index = $item['juiz_id'] -1;
+                    echo "<td class='mdl-data-table__cell--non-numeric'>$juiz[$index]</td>";
                 } else {
-                    echo "<td>$item[$field]</td>";
+                    echo "<td class='mdl-data-table__cell--non-numeric'>$item[$field]</td>";
                 }
             }
             echo "</tr>";

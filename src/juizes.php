@@ -6,7 +6,6 @@ $login = new \App\Controller\Login();
 if(!$login->isLogged()){
     header('location: login.php');
 }
-
 ?>
 <!doctype html>
 <!--
@@ -90,22 +89,20 @@ if(!$login->isLogged()){
             <i class="material-icons">more_vert</i>
           </button>
           <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <a class="mdl-navigation__link" href="sobre.php"><li class="mdl-menu__item">Sobre</li></a>
-              <a class="mdl-navigation__link" href="contato.php"><li class="mdl-menu__item">Contato</li></a>
-              <a class="mdl-navigation__link" href="informacoeslegais.php"><li class="mdl-menu__item">Informações Legais</li></a>
+            <li class="mdl-menu__item">Sobre</li>
+            <li class="mdl-menu__item">Contato</li>
+            <li class="mdl-menu__item">Informações Legais</li>
           </ul>
         </div>
         <!-- BARRA SUPERIOR FIM -->
       </header>
       <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50"><!-- DIV DA AREA LATERAL INICIO-->
         <header class="demo-drawer-header"><!-- USER CARD INICIO -->
-          <!--<img src="assets/images/user.jpg" class="demo-avatar">-->
+          <img src="assets/images/user.jpg" class="demo-avatar">
           <div class="demo-avatar-dropdown">
             <span>
                 <?php
-                    $user = new \App\Model\UsuarioDao();
-                    $usuario = $user->readFirst($_SESSION['user_id']);
-                    echo $usuario['login'];
+                    echo "admin";
                 ?>
             </span>
             <div class="mdl-layout-spacer"></div>
@@ -114,31 +111,21 @@ if(!$login->isLogged()){
               <span class="visuallyhidden">Accounts</span>
             </button>
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-              <?php
-                $user = new \App\Model\UsuarioDao();
-                $usuarios = $user->read();
-                foreach ($usuarios as $usuario){
-                    echo "<a class='mdl-navigation__link' href='change-user.php?id=";
-                    echo $usuario['id'];
-                    echo"'> ";
-                    echo "<li class='mdl-menu__item'>";
-                    echo $usuario['login'];
-                    echo "</li></a>";
-                }
-              ?>
-              <a class="mdl-navigation__link" href="cadastrar-usuario.php"><li class="mdl-menu__item"><i class="material-icons">add</i>Adicionar usuário</li></a>
+              <li class="mdl-menu__item">admin@example.com</li>
+              <li class="mdl-menu__item">user@example.com</li>
+              <li class="mdl-menu__item"><i class="material-icons">add</i>Adicionar usuário</li>
             </ul>
           </div>
         </header><!-- USER CARD FIM -->
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800"><!-- BARRA LATERAL INICIO -->
-          <a class="mdl-navigation__link" href="index.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Inicio</a>
-          <a class="mdl-navigation__link" href="plantoes.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">calendar_today</i>Plantões</a>
-          <a class="mdl-navigation__link" href="juizes.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">portrait</i>Juízes</a>
-          <a class="mdl-navigation__link" href="cidades.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">location_city</i>Cidades</a>
-          <a class="mdl-navigation__link" href="feriados.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Feriados</a>
-          <a class="mdl-navigation__link" href="relatorios.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">insert_chart</i>Relatórios</a>
-          <a class="mdl-navigation__link" href="usuarios.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Usuários</a>
-          <a class="mdl-navigation__link" href="configuracoes.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">build</i>Configurações</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Inicio</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">calendar_today</i>Plantões</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">portrait</i>Juízes</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">location_city</i>Cidades</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Feriados</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">insert_chart</i>Relatórios</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Usuários</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">build</i>Configurações</a>
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" href="logout.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">exit_to_app</i><span class="visuallyhidden">Sair</span></a>
         </nav><!-- BARRA LATERAL FIM -->
@@ -150,7 +137,6 @@ if(!$login->isLogged()){
 
             use App\Model\AgendaDao;
             use App\Model\JuizDao;
-            use App\Model\UsuarioDao;
             use App\View\Tabela;
 
             require_once 'vendor/autoload.php';

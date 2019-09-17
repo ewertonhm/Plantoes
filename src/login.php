@@ -2,17 +2,13 @@
 
 require_once 'vendor/autoload.php';
 
-use App\View\Foot;
-use App\View\Head;
 use App\View\Login;
 
 $login = new \App\Controller\Login();
 if($login->isLogged()){
     header('location: index.php');
 } else {
-    $head = new Head('login','Login');
     $body = new Login();
-    $foot = new Foot();
     if(isset($_POST['btn-login'])){
         $usuario = $login->login($_POST['login'],$_POST['password']);
         if(isset($usuario) AND $usuario != false){

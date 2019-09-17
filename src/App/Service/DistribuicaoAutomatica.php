@@ -36,7 +36,8 @@ class DistribuicaoAutomatica
         $ordemIndex = 0;
 
         foreach($semanas as $semana){
-
+            $agendaService->marcarAgenda($semana['data_inicio'],$ordem[$ordemIndex]);
+            $ordemIndex+=1;
         }
 
     }
