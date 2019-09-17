@@ -12,7 +12,7 @@ class Conexao
     public static function getConexao()
     {
         if(!isset(self::$instance)){
-            self::$instance = new \PDO('pgsql:host=ewerton.gq;port=5432;dbname=plantoes','postgres','A1cdl33$2');
+            self::$instance = new \PDO('pgsql:host=10.84.200.3;port=5432;dbname=plantoes','postgres','A1cdl33$2');
         }
         return self::$instance;
     }
