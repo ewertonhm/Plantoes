@@ -15,13 +15,15 @@ CREATE TABLE feriado(
 CREATE TABLE juiz(
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255),
+    telefone VARCHAR(16),
     cidade_id INTEGER REFERENCES cidade(id)
 );
 
 CREATE TABLE usuario(
     id SERIAL PRIMARY KEY,
-    login VARCHAR(32),
-    password VARCHAR(32)
+    nome VARCHAR(32) NOT NULL,
+    login VARCHAR(32) NOT NULL UNIQUE,
+    password VARCHAR(32) NOT NULL
 );
 
 CREATE TABLE diaindisponivel(
@@ -54,10 +56,10 @@ CREATE TABLE plantao_juiz(
 );
 
 CREATE TABLE agenda(
-    id SERIAL PRIMARY KEY,
-    data_inicio DATE,
-    data_fim DATE,
-    semana INT,
-    ano INT,
-    juiz_id INT REFERENCES juiz(id)
-);
+     id SERIAL PRIMARY KEY,
+     data_inicio DATE,
+     data_fim DATE,
+     semana INT,
+     ano INT,
+     juiz_id INT REFERENCES juiz(id)
+  );
