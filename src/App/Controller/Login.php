@@ -31,9 +31,25 @@ class Login
     {
         $this->usuario = new Usuario();
         $this->usuario->setLogin($login);
-        $this->usuario->setPassword($senha);
+        $this->usuario->setPassword(md5($senha));
         $usuarioCrud = new UsuarioDao();
         $query = $usuarioCrud->readCheckLogin($this->usuario);
+        if(!empty($query)){
+            $this->usuario->setId($query['id']);
+            $_SESSION['logado'] = true;
+            $_SESSION['user_id'] = $this->usuario->getId();
+            return $this->usuario;
+        }
+        $_SESSION['logado'] = false;
+        return false;
+    }
+    public function loginById($id,$senha)
+    {
+        $this->usuario = new Usuario();
+        $this->usuario->setId($id);
+        $this->usuario->setPassword(md5($senha));
+        $usuarioCrud = new UsuarioDao();
+        $query = $usuarioCrud->readCheckLoginById($this->usuario);
         if(!empty($query)){
             $this->usuario->setId($query['id']);
             $_SESSION['logado'] = true;

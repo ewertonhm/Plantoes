@@ -8,11 +8,12 @@ class UsuarioDao
 {
     public function create(Usuario $usuario)
     {
-        $sql = 'INSERT INTO usuario(login, password) VALUES (?,?)';
+        $sql = 'INSERT INTO usuario(nome, login, password) VALUES (?, ?,?)';
         $enviar = Conexao::getConexao()->prepare($sql);
 
-        $enviar->bindValue(1, $usuario->getLogin());
-        $enviar->bindValue(2, $usuario->getPassword());
+        $enviar->bindValue(1, $usuario->getNome());
+        $enviar->bindValue(2, $usuario->getLogin());
+        $enviar->bindValue(3, $usuario->getPassword());
 
         $enviar->execute();
     }
@@ -64,16 +65,34 @@ class UsuarioDao
         }
         return [];
     }
+    public function readCheckLoginById(Usuario $usuario)
+    {
+        $sql = 'SELECT * FROM usuario WHERE id = ? AND password = ?';
+        $enviar = Conexao::getConexao()->prepare($sql);
+
+        $enviar->bindValue(1,$usuario->getId());
+        $enviar->bindValue(2,$usuario->getPassword());
+
+
+        $enviar->execute();
+
+        if($enviar->rowCount() > 0){
+            $resultado = $enviar->fetchAll(\PDO::FETCH_ASSOC);
+            return $resultado[0];
+        }
+        return [];
+    }
 
     public function update(Usuario $usuario)
     {
-        $sql = 'UPDATE usuario SET login = ?, password = ? where id = ?';
+        $sql = 'UPDATE usuario SET login = ?, nome = ?, password = ? where id = ?';
 
         $enviar = Conexao::getConexao()->prepare($sql);
 
-        $enviar->bindValue(1, $usuario->getLogin());
-        $enviar->bindValue(2, $usuario->getPassword());
-        $enviar->bindValue(3, $usuario->getId());
+        $enviar->bindValue(1, $usuario->getNome());
+        $enviar->bindValue(2, $usuario->getLogin());
+        $enviar->bindValue(3, $usuario->getPassword());
+        $enviar->bindValue(4, $usuario->getId());
 
         $enviar->execute();
     }

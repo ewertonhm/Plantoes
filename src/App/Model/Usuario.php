@@ -6,7 +6,7 @@ namespace App\Model;
 
 class Usuario
 {
-    private $id, $login, $password;
+    private $id, $nome, $login, $password;
 
     /**
      * @return mixed
@@ -54,6 +54,22 @@ class Usuario
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    /**
+     * @param mixed $nome
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
     }
 
 }
