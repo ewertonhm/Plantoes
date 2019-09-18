@@ -6,7 +6,7 @@ namespace App\View;
 
 class LayoutPadrao
 {
-    public function inicio($title)
+    public function inicio($title,$addButton = '')
     {
         echo <<<TAG
 <!doctype html>
@@ -30,7 +30,7 @@ class LayoutPadrao
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="description" content="Agenda automática de plantões da Justiça Federal.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>
 TAG;
@@ -95,6 +95,20 @@ TAG;
               <label class="mdl-textfield__label" for="search">Buscar...</label>
             </div>
           </div>-->
+TAG;
+        if($addButton != NULL){
+            echo "<div id='add'><a class='mdl-navigation__link' href='";
+            echo $addButton;
+            echo "'>";
+            echo "
+          <button class='mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon'>                        
+            <i class='material-icons'>add</i>
+          </button>
+          </a>
+          </div>
+          <div class='mdl-tooltip' data-mdl-for='add'>Inserir</div>";
+        }
+        echo <<<TAG
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
             <i class="material-icons">more_vert</i>
           </button>
@@ -113,8 +127,13 @@ TAG;
             <span>
 TAG;
         $user = new \App\Model\UsuarioDao();
-        $usuario = $user->readFirst($_SESSION['user_id']);
-        echo $usuario['login'];
+
+        if(isset($_SESSION['user_id'])){
+            $usuario = $user->readFirst($_SESSION['user_id']);
+            echo $usuario['nome'];
+        } else {
+            echo "";
+        }
         echo <<<TAG
             </span>
             <div class="mdl-layout-spacer"></div>
@@ -124,21 +143,28 @@ TAG;
             </button>
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
 TAG;
-        $usuarios = $user->read();
-        foreach ($usuarios as $usuario){
-            echo "<a class='mdl-navigation__link' href='change-user.php?id=";
-            echo $usuario['id'];
-            echo"'> ";
-            echo "<li class='mdl-menu__item'>";
-            echo $usuario['login'];
-            echo "</li></a>";
+        if(isset($_SESSION['user_id'])){
+            $usuarios = $user->read();
+            foreach ($usuarios as $usuario){
+                echo "<a class='mdl-navigation__link' href='change-user.php?id=";
+                echo $usuario['id'];
+                echo"'> ";
+                echo "<li class='mdl-menu__item'>";
+                echo $usuario['nome'];
+                echo "</li></a>";
+            }
+            echo "<a class='mdl-navigation__link' href='cadastrar-usuario.php'><li class='mdl-menu__item'><i class='material-icons'>add</i>Adicionar usuário</li></a>";
+        } else {
+            echo "<a class='mdl-navigation__link' href='#'><li disabled class='mdl-menu__item'><i class='material-icons'>add</i>Adicionar usuário</li></a>";
         }
         echo <<<TAG
-              <a class="mdl-navigation__link" href="cadastrar-usuario.php"><li class="mdl-menu__item"><i class="material-icons">add</i>Adicionar usuário</li></a>
             </ul>
           </div>
         </header><!-- USER CARD FIM -->
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800"><!-- BARRA LATERAL INICIO -->
+TAG;
+        if(isset($_SESSION['user_id'])){
+            echo <<<TAG
           <a class="mdl-navigation__link" href="index.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Inicio</a>
           <a class="mdl-navigation__link" href="plantoes.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">calendar_today</i>Plantões</a>
           <a class="mdl-navigation__link" href="juizes.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">portrait</i>Juízes</a>
@@ -147,6 +173,9 @@ TAG;
           <a class="mdl-navigation__link" href="relatorios.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">insert_chart</i>Relatórios</a>
           <a class="mdl-navigation__link" href="usuarios.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Usuários</a>
           <a class="mdl-navigation__link" href="configuracoes.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">build</i>Configurações</a>
+TAG;
+        }
+        echo <<<TAG
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" href="logout.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">exit_to_app</i><span class="visuallyhidden">Sair</span></a>
         </nav><!-- BARRA LATERAL FIM -->
