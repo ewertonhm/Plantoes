@@ -6,7 +6,6 @@ use App\View\Tabela;
 require_once 'config.php';
 
 $login = new \App\Controller\Login();
-
 if(!$login->isLogged()){
     header('location: login.php');
 }
