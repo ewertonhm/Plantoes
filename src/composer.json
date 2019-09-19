@@ -6,6 +6,7 @@
   },
   "require": {
     "ext-pdo": "*",
-    "php-activerecord/php-activerecord": "^1.2"
+    "php-activerecord/php-activerecord": "^1.2",
+    "nesbot/carbon": "^2.24"
   }
 }
