@@ -1,6 +1,6 @@
 <?php
 
-require_once 'vendor/autoload.php';
+require_once 'config.php';
 
 use App\View\LayoutPadrao;
 use App\View\Login;
@@ -16,7 +16,8 @@ if($login->isLogged()){
     if(isset($_POST['btn-login'])){
         $usuario = $login->login($_POST['login'],$_POST['password']);
         if(isset($usuario) AND $usuario != false){
-            $id = $usuario->getId();
+            $id = $usuario->id;
+            var_dump($usuario);
         }
         if(isset($id) AND $id != NULL){
             echo "<script>";

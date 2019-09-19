@@ -1,11 +1,9 @@
 <?php
 
-use App\Model\AgendaDao;
-use App\Model\JuizDao;
 use App\View\LayoutPadrao;
 use App\View\Tabela;
 
-require_once 'vendor/autoload.php';
+require_once 'config.php';
 
 $login = new \App\Controller\Login();
 
@@ -16,8 +14,8 @@ if(!$login->isLogged()){
 $layout = new LayoutPadrao();
 
 $layout->inicio('Inicio');
-
-
+// TODO: Tabela
+/*
 $agendaCrud = new AgendaDao();
 
 $juizCrud = new JuizDao();
@@ -34,6 +32,6 @@ $fields = ['data_inicio','data_fim','juiz_id'];
 $body = $agendaCrud->read();
 
 $table = new Tabela($header,$fields,$body,$juiz);
-
+*/
 
 $layout->fim();

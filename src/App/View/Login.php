@@ -21,9 +21,8 @@ class Login
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 TAG;
         if($id != NULL){
-            $usuario = new UsuarioDao();
-            $dados = $usuario->readFirst($id);
-            echo $dados['login'];
+            $dados = \App\Model\Usuario::first($id);
+            echo $dados->login;
         } else {
             echo <<<TAG
                                     <input class="mdl-textfield__input" type="text" id="login" name="login">

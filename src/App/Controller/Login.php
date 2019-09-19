@@ -5,12 +5,9 @@ namespace App\Controller;
 
 
 use App\Model\Usuario;
-use App\Model\UsuarioDao;
 
 class Login
 {
-    private $usuario;
-
     public function __construct(){
         if(!isset($_SESSION)){
             session_start();
@@ -29,32 +26,22 @@ class Login
 
     public function login($login,$senha)
     {
-        $this->usuario = new Usuario();
-        $this->usuario->setLogin($login);
-        $this->usuario->setPassword(md5($senha));
-        $usuarioCrud = new UsuarioDao();
-        $query = $usuarioCrud->readCheckLogin($this->usuario);
+        $query = Usuario::find_by_login_and_password($login,md5($senha));
         if(!empty($query)){
-            $this->usuario->setId($query['id']);
             $_SESSION['logado'] = true;
-            $_SESSION['user_id'] = $this->usuario->getId();
-            return $this->usuario;
+            $_SESSION['user_id'] = $query->id;
+            return $query;
         }
         $_SESSION['logado'] = false;
         return false;
     }
     public function loginById($id,$senha)
     {
-        $this->usuario = new Usuario();
-        $this->usuario->setId($id);
-        $this->usuario->setPassword(md5($senha));
-        $usuarioCrud = new UsuarioDao();
-        $query = $usuarioCrud->readCheckLoginById($this->usuario);
+        $query = Usuario::find_by_id_and_password($id,md5($senha));
         if(!empty($query)){
-            $this->usuario->setId($query['id']);
             $_SESSION['logado'] = true;
-            $_SESSION['user_id'] = $this->usuario->getId();
-            return $this->usuario;
+            $_SESSION['user_id'] = $query->id;
+            return $query;
         }
         $_SESSION['logado'] = false;
         return false;

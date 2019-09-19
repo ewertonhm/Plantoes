@@ -1,8 +1,8 @@
 <?php
 
-require_once 'vendor/autoload.php';
+require_once 'config.php';
 
-use App\Model\UsuarioDao;
+
 use App\View\LayoutPadrao;
 use App\View\Login;
 
@@ -16,10 +16,9 @@ $layout = new LayoutPadrao();
 $layout->inicio('Trocar de Usuário');
 $body = new Login($_GET['id']);
 if(isset($_POST['btn-login'])){
-    $usuario = new \App\Controller\Login();
-    $usuario = $login->loginById($_GET['id'],$_POST['password']);
+    $usuario = App\Model\Usuario::find_by_id_and_password($_GET['id'],md5($_POST['password']));
     if(isset($usuario) AND $usuario != false){
-        $id = $usuario->getId();
+        $id = $usuario->id;
     }
     if(isset($id) AND $id != NULL){
         echo "<script>";

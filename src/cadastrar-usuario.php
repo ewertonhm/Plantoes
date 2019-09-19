@@ -1,10 +1,13 @@
 <?php
 
+// TO-DO
+
+
 use App\Model\UsuarioDao;
 use App\View\LayoutPadrao;
 use App\View\Tabela;
 
-require_once 'vendor/autoload.php';
+require_once 'config.php';
 
 $login = new \App\Controller\Login();
 if(!$login->isLogged()){

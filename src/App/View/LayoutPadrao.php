@@ -4,6 +4,8 @@
 namespace App\View;
 
 
+use App\Model\Usuario;
+
 class LayoutPadrao
 {
     public function inicio($title,$addButton = '')
@@ -126,11 +128,9 @@ TAG;
           <div class="demo-avatar-dropdown">
             <span>
 TAG;
-        $user = new \App\Model\UsuarioDao();
-
         if(isset($_SESSION['user_id'])){
-            $usuario = $user->readFirst($_SESSION['user_id']);
-            echo $usuario['nome'];
+            $usuario = \App\Model\Usuario::first($_SESSION['user_id']);
+            echo $usuario->nome;
         } else {
             echo "";
         }
@@ -144,13 +144,13 @@ TAG;
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
 TAG;
         if(isset($_SESSION['user_id'])){
-            $usuarios = $user->read();
+            $usuarios = Usuario::all();
             foreach ($usuarios as $usuario){
                 echo "<a class='mdl-navigation__link' href='change-user.php?id=";
-                echo $usuario['id'];
+                echo $usuario->id;
                 echo"'> ";
                 echo "<li class='mdl-menu__item'>";
-                echo $usuario['nome'];
+                echo $usuario->nome;
                 echo "</li></a>";
             }
             echo "<a class='mdl-navigation__link' href='cadastrar-usuario.php'><li class='mdl-menu__item'><i class='material-icons'>add</i>Adicionar usuário</li></a>";
