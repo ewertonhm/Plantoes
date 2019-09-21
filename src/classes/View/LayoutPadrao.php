@@ -61,7 +61,7 @@ TAG;
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=pt-br">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
+    <link rel="stylesheet" href="assets/css/material.cyan-light_blue.min.css">
     <link rel="stylesheet" href="assets/styles.css">
     <style>
     #view-source {
@@ -237,7 +237,7 @@ TAG;
           </g>
         </defs>
       </svg>
-    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="assets/js/material.min.js"></script>
   </body>
 </html>
 TAG;

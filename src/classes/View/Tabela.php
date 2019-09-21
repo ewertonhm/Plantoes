@@ -7,9 +7,9 @@ namespace View;
 class Tabela
 {
 
-    public function __construct($header = [], $fields =[], $body = [], $juiz = [], $buttons = [])
+    public function __construct($header = [], $fields =[], $buttons = [],$ordem = '')
     {
-        if(empty($header) OR empty($body) OR empty($fields)){
+        if(empty($header) OR empty($fields) OR empty($fields)){
             return true;
         }
         echo <<<TAG
@@ -23,25 +23,33 @@ TAG;
         <thead>
         <tr>
         ";
+        $index = 0;
         foreach ($header as $head){
-            echo "<th class='mdl-data-table__cell--non-numeric'>$head</th>";
+            echo "<th class='mdl-data-table__cell--non-numeric'>";
+
+            if($ordem){
+                echo "<a class='mdl-navigation__link' href='";
+                echo $_SERVER['PHP_SELF'];
+                echo "?ordem=$head'>";
+            }
+
+            echo "$head</th>";
+
+            if ($ordem){
+                echo "</a>";
+            }
         }
         echo "
         </tr>
         </thead>
         <tbody>
         ";
-        // para cada linha que retornar no banco de dados
-        foreach ($body as $item){
+        $index = 0;
+        foreach ($fields[0] as $linha){
             echo "<tr>";
             // para cada campo da tabela
-            foreach ($fields as $field){
-                if($field == 'juiz_id' AND $item['juiz_id'] != NULL){
-                    $index = $item['juiz_id'] -1;
-                    echo "<td class='mdl-data-table__cell--non-numeric'>$juiz[$index]</td>";
-                } else {
-                    echo "<td class='mdl-data-table__cell--non-numeric'>$item[$field]</td>";
-                }
+            foreach ($fields as $coluna){
+                echo "<td class='mdl-data-table__cell--non-numeric'>$coluna[$index]</td>";
             }
             if(!empty($buttons)){
                 foreach ($buttons as $button){
@@ -49,23 +57,23 @@ TAG;
                     echo "<a class='mdl-navigation__link' href='";
                     echo $button;
                     echo "?id=";
-                    echo $item['id'];
+                    echo $fields[0][$index];
                     echo "'>";
                     echo "<button class='mdl-button mdl-js-button mdl-button--icon'>";
-                    if($button == 'alterar-usuario.php'){
+                    if(substr($button,0,3) == 'alt'){
                         echo "<div id='alter-user";
-                        echo $item['id'];
+                        echo $fields[0][$index];
                         echo "' class='icon material-icons'>edit</div>";
                         echo "<div class='mdl-tooltip' data-mdl-for='alter-user";
-                        echo $item['id'];
+                        echo $fields[0][$index];
                         echo "'>Editar</div>";
                     }
-                    if($button == 'deletar-usuario.php'){
+                    if(substr($button,0,3) == 'del'){
                         echo "<div id='del-user";
-                        echo $item['id'];
+                        echo $fields[0][$index];
                         echo "' class='icon material-icons'>delete_swip</div>";
                         echo "<div class='mdl-tooltip' data-mdl-for='del-user";
-                        echo $item['id'];
+                        echo $fields[0][$index];
                         echo "'>Deletar</div>";
                     }
                     echo "</button>";
@@ -75,6 +83,7 @@ TAG;
             }
 
             echo "</tr>";
+            $index++;
         }
         echo "
         </tbody>
