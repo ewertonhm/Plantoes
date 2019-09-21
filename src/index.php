@@ -21,11 +21,17 @@ $agenda = AgendasQuery::create()->findByAno(2019);
 $juiz = [];
 $dataInicio = [];
 $dataFim = [];
+
 foreach ($agenda as $a){
     $dataInicio[] = $a->getDataInicio('d-m-Y');
     $dataFim[] = $a->getDataFim('d-m-Y');
-    $j = $a->getJuizes();
-    $juiz[] = $j->getNome();
+    if($a->getJuizId() != NULL){
+        $j = $a->getJuizes();
+        $juiz[] = $j->getNome();
+    } else {
+        $juiz[] = '';
+    }
+
 }
 
 $table = new TabelaAgenda($dataInicio,$dataFim,$juiz);

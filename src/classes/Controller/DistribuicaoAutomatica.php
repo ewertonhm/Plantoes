@@ -8,15 +8,12 @@ use Base\JuizesQuery;
 
 class DistribuicaoAutomatica
 {
-    public function distribuir($ano){
+    public static function distribuir($ano){
 
         $agendaController = new Agenda();
         $semanas = AgendasQuery::create()->findByAno($ano);
 
-        //////////////////////////////////////////
-        echo '<pre>';
-        var_dump($semanas);
-        /////////////////////////////////////////
+
 
 
         // subistituir futuramente pela ordem real
@@ -30,6 +27,9 @@ class DistribuicaoAutomatica
             $agendaController->marcarAgenda($semana->getDataInicio(),$ordem[$ordemIndex]);
             $ordemIndex+=1;
         }
+        echo "<script>";
+        echo "alert('Feito!');";
+        echo "</script>";
 
     }
 }

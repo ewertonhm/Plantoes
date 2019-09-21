@@ -7,7 +7,7 @@ use Base\AgendasQuery;
 
 class Agenda
 {
-    public function criarAnoZerado($ano)
+    public static function criarAnoZerado($ano)
     {
         // verifica se ja possui dados no ano
         $query = \AgendasQuery::create()->filterByAno($ano)->find();
@@ -36,6 +36,9 @@ class Agenda
             $data->add(\DateInterval::createFromDateString('7Days'));
             $week++;
         }
+        echo "<script>";
+        echo "alert('Feito!');";
+        echo "</script>";
     }
     public function marcarAgenda($dataInicio, $juizId)
     {
