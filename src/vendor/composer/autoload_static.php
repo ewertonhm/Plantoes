@@ -7,16 +7,35 @@ namespace Composer\Autoload;
 class ComposerStaticInit3e0cace9835689a825fc02759e8ac1eb
 {
     public static $files = array (
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '6e60481d8c04e99474e2ba7b3658ab5a' => __DIR__ . '/..' . '/php-activerecord/php-activerecord/ActiveRecord.php',
+        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
+            'Symfony\\Polyfill\\Php73\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Contracts\\Translation\\' => 30,
+            'Symfony\\Contracts\\Service\\' => 26,
+            'Symfony\\Component\\Yaml\\' => 23,
+            'Symfony\\Component\\Validator\\' => 28,
             'Symfony\\Component\\Translation\\' => 30,
+            'Symfony\\Component\\Finder\\' => 25,
+            'Symfony\\Component\\Filesystem\\' => 29,
+            'Symfony\\Component\\Console\\' => 26,
+            'Symfony\\Component\\Config\\' => 25,
+        ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
+            'Psr\\Container\\' => 14,
+        ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
         ),
         'C' => 
         array (
@@ -29,17 +48,65 @@ class ComposerStaticInit3e0cace9835689a825fc02759e8ac1eb
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Php73\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php73',
+        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
         'Symfony\\Contracts\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation-contracts',
         ),
+        'Symfony\\Contracts\\Service\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/service-contracts',
+        ),
+        'Symfony\\Component\\Yaml\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/yaml',
+        ),
+        'Symfony\\Component\\Validator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/validator',
+        ),
         'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
+        'Symfony\\Component\\Finder\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/finder',
+        ),
+        'Symfony\\Component\\Filesystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/filesystem',
+        ),
+        'Symfony\\Component\\Console\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'Symfony\\Component\\Config\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/config',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
         'Carbon\\' => 
         array (
@@ -51,11 +118,72 @@ class ComposerStaticInit3e0cace9835689a825fc02759e8ac1eb
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'Propel' => 
+            array (
+                0 => __DIR__ . '/..' . '/propel/propel/src',
+            ),
+        ),
+    );
+
+    public static $classMap = array (
+        'Agendas' => __DIR__ . '/../..' . '/generated-classes/Agendas.php',
+        'AgendasQuery' => __DIR__ . '/../..' . '/generated-classes/AgendasQuery.php',
+        'Base\\Agendas' => __DIR__ . '/../..' . '/generated-classes/Base/Agendas.php',
+        'Base\\AgendasQuery' => __DIR__ . '/../..' . '/generated-classes/Base/AgendasQuery.php',
+        'Base\\Cidades' => __DIR__ . '/../..' . '/generated-classes/Base/Cidades.php',
+        'Base\\CidadesQuery' => __DIR__ . '/../..' . '/generated-classes/Base/CidadesQuery.php',
+        'Base\\DiasDisponiveis' => __DIR__ . '/../..' . '/generated-classes/Base/DiasDisponiveis.php',
+        'Base\\DiasDisponiveisQuery' => __DIR__ . '/../..' . '/generated-classes/Base/DiasDisponiveisQuery.php',
+        'Base\\DiasIndisponiveis' => __DIR__ . '/../..' . '/generated-classes/Base/DiasIndisponiveis.php',
+        'Base\\DiasIndisponiveisQuery' => __DIR__ . '/../..' . '/generated-classes/Base/DiasIndisponiveisQuery.php',
+        'Base\\Feriados' => __DIR__ . '/../..' . '/generated-classes/Base/Feriados.php',
+        'Base\\FeriadosQuery' => __DIR__ . '/../..' . '/generated-classes/Base/FeriadosQuery.php',
+        'Base\\Juizes' => __DIR__ . '/../..' . '/generated-classes/Base/Juizes.php',
+        'Base\\JuizesQuery' => __DIR__ . '/../..' . '/generated-classes/Base/JuizesQuery.php',
+        'Base\\Plantoes' => __DIR__ . '/../..' . '/generated-classes/Base/Plantoes.php',
+        'Base\\PlantoesJuizes' => __DIR__ . '/../..' . '/generated-classes/Base/PlantoesJuizes.php',
+        'Base\\PlantoesJuizesQuery' => __DIR__ . '/../..' . '/generated-classes/Base/PlantoesJuizesQuery.php',
+        'Base\\PlantoesQuery' => __DIR__ . '/../..' . '/generated-classes/Base/PlantoesQuery.php',
+        'Base\\Usuarios' => __DIR__ . '/../..' . '/generated-classes/Base/Usuarios.php',
+        'Base\\UsuariosQuery' => __DIR__ . '/../..' . '/generated-classes/Base/UsuariosQuery.php',
+        'Cidades' => __DIR__ . '/../..' . '/generated-classes/Cidades.php',
+        'CidadesQuery' => __DIR__ . '/../..' . '/generated-classes/CidadesQuery.php',
+        'DiasDisponiveis' => __DIR__ . '/../..' . '/generated-classes/DiasDisponiveis.php',
+        'DiasDisponiveisQuery' => __DIR__ . '/../..' . '/generated-classes/DiasDisponiveisQuery.php',
+        'DiasIndisponiveis' => __DIR__ . '/../..' . '/generated-classes/DiasIndisponiveis.php',
+        'DiasIndisponiveisQuery' => __DIR__ . '/../..' . '/generated-classes/DiasIndisponiveisQuery.php',
+        'Feriados' => __DIR__ . '/../..' . '/generated-classes/Feriados.php',
+        'FeriadosQuery' => __DIR__ . '/../..' . '/generated-classes/FeriadosQuery.php',
+        'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Juizes' => __DIR__ . '/../..' . '/generated-classes/Juizes.php',
+        'JuizesQuery' => __DIR__ . '/../..' . '/generated-classes/JuizesQuery.php',
+        'Map\\AgendasTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/AgendasTableMap.php',
+        'Map\\CidadesTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/CidadesTableMap.php',
+        'Map\\DiasDisponiveisTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/DiasDisponiveisTableMap.php',
+        'Map\\DiasIndisponiveisTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/DiasIndisponiveisTableMap.php',
+        'Map\\FeriadosTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/FeriadosTableMap.php',
+        'Map\\JuizesTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/JuizesTableMap.php',
+        'Map\\PlantoesJuizesTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/PlantoesJuizesTableMap.php',
+        'Map\\PlantoesTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/PlantoesTableMap.php',
+        'Map\\UsuariosTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/UsuariosTableMap.php',
+        'Plantoes' => __DIR__ . '/../..' . '/generated-classes/Plantoes.php',
+        'PlantoesJuizes' => __DIR__ . '/../..' . '/generated-classes/PlantoesJuizes.php',
+        'PlantoesJuizesQuery' => __DIR__ . '/../..' . '/generated-classes/PlantoesJuizesQuery.php',
+        'PlantoesQuery' => __DIR__ . '/../..' . '/generated-classes/PlantoesQuery.php',
+        'Usuarios' => __DIR__ . '/../..' . '/generated-classes/Usuarios.php',
+        'UsuariosQuery' => __DIR__ . '/../..' . '/generated-classes/UsuariosQuery.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit3e0cace9835689a825fc02759e8ac1eb::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit3e0cace9835689a825fc02759e8ac1eb::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3e0cace9835689a825fc02759e8ac1eb::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit3e0cace9835689a825fc02759e8ac1eb::$classMap;
 
         }, null, ClassLoader::class);
     }

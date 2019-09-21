@@ -1,0 +1,14 @@
+propel:
+  database:
+    connections:
+      default:
+        adapter: pgsql
+        classname: Propel\Runtime\Connection\ConnectionWrapper
+        dsn: "pgsql:host=ewerton.gq;port=5432;dbname=plantoes"
+        user: postgres
+        password: A1cdl33$2
+        attributes:
+        settings:
+          charset: utf8
+          queries:
+            utf8: "SET NAMES 'UTF8'"

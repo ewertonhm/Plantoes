@@ -1,11 +1,14 @@
 <?php
 
-//TO-DO
-
+// setup the autoloading
 require_once 'vendor/autoload.php';
+// setup Propel
+require_once 'generated-conf/config.php';
 
-ActiveRecord\Config::initialize(function($cfg)
-{
-    $cfg->set_connections(array('development' =>
-    'pgsql://postgres:A1cdl33$2@10.84.200.3/plantoes'));
-});
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+$defaultLogger = new Logger('defaultLogger');
+$defaultLogger->pushHandler(new StreamHandler('/var/log/propel.log', Logger::WARNING));
+
+$serviceContainer->setLogger('defaultLogger', $defaultLogger);
