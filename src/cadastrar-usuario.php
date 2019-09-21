@@ -1,12 +1,13 @@
 <?php
 
-use App\Model\UsuarioDao;
-use App\View\LayoutPadrao;
-use App\View\Tabela;
+// TO-DO
 
-require_once 'vendor/autoload.php';
+use View\LayoutPadrao;
+use View\Tabela;
 
-$login = new \App\Controller\Login();
+require_once 'config.php';
+
+$login = new Controller\Login();
 if(!$login->isLogged()){
     header('location: login.php');
 }

@@ -1,11 +1,11 @@
 <?php
 
-require_once 'vendor/autoload.php';
+require_once 'config.php';
 
-use App\View\LayoutPadrao;
-use App\View\Login;
+use View\LayoutPadrao;
+use View\Login;
 
-$login = new \App\Controller\Login();
+$login = new Controller\Login();
 if($login->isLogged()){
     header('location: index.php');
 } else {

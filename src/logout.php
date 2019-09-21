@@ -1,8 +1,8 @@
 <?php
 
-use App\Controller\Login;
+use Controller\Login;
 
-require_once "vendor/autoload.php";
+require_once "config.php";
 
 $login = new Login();
 $login->logout();
