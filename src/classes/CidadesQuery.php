@@ -1,9 +1,8 @@
 <?php
-
-use Base\Plantoes as BasePlantoes;
+use Base\CidadesQuery as BaseCidadesQuery;
 
 /**
- * Skeleton subclass for representing a row from the 'plantoes' table.
+ * Skeleton subclass for performing query and update operations on the 'cidades' table.
  *
  *
  *
@@ -12,7 +11,7 @@ use Base\Plantoes as BasePlantoes;
  * long as it does not already exist in the output directory.
  *
  */
-class Plantoes extends BasePlantoes
+class CidadesQuery extends BaseCidadesQuery
 {
 
 }

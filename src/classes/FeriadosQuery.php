@@ -1,9 +1,8 @@
 <?php
-
-use Base\Feriados as BaseFeriados;
+use Base\FeriadosQuery as BaseFeriadosQuery;
 
 /**
- * Skeleton subclass for representing a row from the 'feriados' table.
+ * Skeleton subclass for performing query and update operations on the 'feriados' table.
  *
  *
  *
@@ -12,7 +11,7 @@ use Base\Feriados as BaseFeriados;
  * long as it does not already exist in the output directory.
  *
  */
-class Feriados extends BaseFeriados
+class FeriadosQuery extends BaseFeriadosQuery
 {
 
 }

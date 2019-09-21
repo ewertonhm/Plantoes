@@ -1,11 +1,11 @@
 <?php
 
-use App\View\LayoutPadrao;
-use App\View\Tabela;
+use View\LayoutPadrao;
+use View\TabelaAgenda;
 
 require_once 'config.php';
 
-$login = new \App\Controller\Login();
+$login = new Controller\Login();
 if(!$login->isLogged()){
     header('location: login.php');
 }
@@ -13,24 +13,22 @@ if(!$login->isLogged()){
 $layout = new LayoutPadrao();
 
 $layout->inicio('Inicio');
-// TODO: Tabela
-/*
-$agendaCrud = new AgendaDao();
 
-$juizCrud = new JuizDao();
-$juizes = $juizCrud->read();
+
+$juizes = JuizesQuery::create()->find();
+$agenda = AgendasQuery::create()->findByAno(2019);
+
 $juiz = [];
-
-foreach ($juizes as $j){
-    $juiz[] = $j['nome'];
+$dataInicio = [];
+$dataFim = [];
+foreach ($agenda as $a){
+    $dataInicio[] = $a->getDataInicio('d-m-Y');
+    $dataFim[] = $a->getDataFim('d-m-Y');
+    $j = $a->getJuizes();
+    $juiz[] = $j->getNome();
 }
 
-// Table
-$header = ['INICIO','FIM','JUIZ'];
-$fields = ['data_inicio','data_fim','juiz_id'];
-$body = $agendaCrud->read();
+$table = new TabelaAgenda($dataInicio,$dataFim,$juiz);
 
-$table = new Tabela($header,$fields,$body,$juiz);
-*/
 
 $layout->fim();

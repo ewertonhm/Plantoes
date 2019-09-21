@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\View;
+namespace View;
 
 
 use App\Model\UsuarioDao;
@@ -21,8 +21,8 @@ class Login
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 TAG;
         if($id != NULL){
-            $dados = \App\Model\Usuario::first($id);
-            echo $dados->login;
+            $dados = \UsuariosQuery::create()->findOneById($id);
+            echo $dados->getLogin();
         } else {
             echo <<<TAG
                                     <input class="mdl-textfield__input" type="text" id="login" name="login">

@@ -1,9 +1,8 @@
 <?php
-
-use Base\DiasDisponiveis as BaseDiasDisponiveis;
+use Base\Cidades as BaseCidades;
 
 /**
- * Skeleton subclass for representing a row from the 'dias_disponiveis' table.
+ * Skeleton subclass for representing a row from the 'cidades' table.
  *
  *
  *
@@ -12,7 +11,7 @@ use Base\DiasDisponiveis as BaseDiasDisponiveis;
  * long as it does not already exist in the output directory.
  *
  */
-class DiasDisponiveis extends BaseDiasDisponiveis
+class Cidades extends BaseCidades
 {
 
 }

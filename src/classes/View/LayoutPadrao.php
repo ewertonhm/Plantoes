@@ -1,10 +1,8 @@
 <?php
 
 
-namespace App\View;
+namespace View;
 
-
-use App\Model\Usuario;
 
 class LayoutPadrao
 {
@@ -129,8 +127,8 @@ TAG;
             <span>
 TAG;
         if(isset($_SESSION['user_id'])){
-            $usuario = \App\Model\Usuario::first($_SESSION['user_id']);
-            echo $usuario->nome;
+            $usuario = \UsuariosQuery::create()->findOneById($_SESSION['user_id']);
+            echo $usuario->getNome();
         } else {
             echo "";
         }
@@ -144,13 +142,13 @@ TAG;
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
 TAG;
         if(isset($_SESSION['user_id'])){
-            $usuarios = Usuario::all();
+            $usuarios = \UsuariosQuery::create()->find();
             foreach ($usuarios as $usuario){
                 echo "<a class='mdl-navigation__link' href='change-user.php?id=";
-                echo $usuario->id;
+                echo $usuario->getId();
                 echo"'> ";
                 echo "<li class='mdl-menu__item'>";
-                echo $usuario->nome;
+                echo $usuario->getNome();
                 echo "</li></a>";
             }
             echo "<a class='mdl-navigation__link' href='cadastrar-usuario.php'><li class='mdl-menu__item'><i class='material-icons'>add</i>Adicionar usuário</li></a>";

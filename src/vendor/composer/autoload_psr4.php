@@ -22,5 +22,4 @@ return array(
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
-    'App\\' => array($baseDir . '/App'),
 );

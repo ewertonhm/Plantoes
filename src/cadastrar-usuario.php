@@ -2,14 +2,12 @@
 
 // TO-DO
 
-
-use App\Model\UsuarioDao;
-use App\View\LayoutPadrao;
-use App\View\Tabela;
+use View\LayoutPadrao;
+use View\Tabela;
 
 require_once 'config.php';
 
-$login = new \App\Controller\Login();
+$login = new Controller\Login();
 if(!$login->isLogged()){
     header('location: login.php');
 }

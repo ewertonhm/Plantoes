@@ -1,9 +1,6 @@
 {
   "autoload": {
-    "classmap": ["generated-classes/"],
-    "psr-4": {
-      "App\\": "App/"
-    }
+    "classmap": ["classes/"]
   },
   "require": {
     "ext-pdo": "*",

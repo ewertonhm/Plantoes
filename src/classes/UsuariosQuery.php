@@ -1,9 +1,8 @@
 <?php
-
-use Base\Agendas as BaseAgendas;
+use Base\UsuariosQuery as BaseUsuariosQuery;
 
 /**
- * Skeleton subclass for representing a row from the 'agendas' table.
+ * Skeleton subclass for performing query and update operations on the 'usuarios' table.
  *
  *
  *
@@ -12,7 +11,7 @@ use Base\Agendas as BaseAgendas;
  * long as it does not already exist in the output directory.
  *
  */
-class Agendas extends BaseAgendas
+class UsuariosQuery extends BaseUsuariosQuery
 {
 
 }

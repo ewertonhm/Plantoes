@@ -1,12 +1,12 @@
 <?php
 
-use App\Model\Usuario;
-use App\View\LayoutPadrao;
-use App\View\Tabela;
+
+use View\LayoutPadrao;
+use View\Tabela;
 
 require_once 'config.php';
 
-$login = new \App\Controller\Login();
+$login = new Controller\Login();
 if(!$login->isLogged()){
     header('location: login.php');
 }
@@ -14,7 +14,7 @@ if(!$login->isLogged()){
 $layout = new LayoutPadrao();
 $layout->inicio('Usuários','cadastrar-usuario.php');
 
-$usuarios = Usuario::all();
+$usuarios = UsuariosQuery::create()->orderById()->find();
 // TODO: Tabela;
 /*
 $header = ['ID','NOME','LOGIN','',''];

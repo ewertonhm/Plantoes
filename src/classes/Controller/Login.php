@@ -1,10 +1,8 @@
 <?php
 
 
-namespace App\Controller;
+namespace Controller;
 
-
-use App\Model\Usuario;
 
 class Login
 {
@@ -26,10 +24,10 @@ class Login
 
     public function login($login,$senha)
     {
-        $query = Usuario::find_by_login_and_password($login,md5($senha));
+        $query = \UsuariosQuery::create()->filterByLogin($login)->filterByPassword(md5($senha))->findOne();
         if(!empty($query)){
             $_SESSION['logado'] = true;
-            $_SESSION['user_id'] = $query->id;
+            $_SESSION['user_id'] = $query->getId();
             return $query;
         }
         $_SESSION['logado'] = false;
@@ -37,10 +35,10 @@ class Login
     }
     public function loginById($id,$senha)
     {
-        $query = Usuario::find_by_id_and_password($id,md5($senha));
+        $query = \UsuariosQuery::create()->filterByPassword(md5($senha))->filterById($id)->findOne();
         if(!empty($query)){
             $_SESSION['logado'] = true;
-            $_SESSION['user_id'] = $query->id;
+            $_SESSION['user_id'] = $query->getId();
             return $query;
         }
         $_SESSION['logado'] = false;
@@ -50,6 +48,10 @@ class Login
         session_unset();
         session_destroy();
         $this->goToLogin();
+    }
+    public static function sessioDestroy(){
+        session_unset();
+        session_destroy();
     }
     public function goToLogin(){
         header('location: login.php');

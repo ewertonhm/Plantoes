@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\View;
+namespace View;
 
 
 class UserForm

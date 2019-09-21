@@ -1,26 +1,17 @@
 <?php
 
 
-namespace App\Service;
+namespace Controller;
 
-
-use App\Model\AgendaDao;
-use App\Model\Juiz;
-use App\Model\JuizDao;
+use Base\AgendasQuery;
+use Base\JuizesQuery;
 
 class DistribuicaoAutomatica
 {
     public function distribuir($ano){
-        $agendaCrud = new AgendaDao();
-        $agendaService = new Agenda();
 
-        $agenda = new \App\Model\Agenda();
-        $agenda->setAno($ano);
-        $semanas = $agendaCrud->readWithYear($agenda);
-
-        $juiz = new Juiz();
-        $juizCrud = new JuizDao();
-        $juizes = $juizCrud->read();
+        $agendaController = new Agenda();
+        $semanas = AgendasQuery::create()->findByAno($ano);
 
         //////////////////////////////////////////
         echo '<pre>';
@@ -36,7 +27,7 @@ class DistribuicaoAutomatica
         $ordemIndex = 0;
 
         foreach($semanas as $semana){
-            $agendaService->marcarAgenda($semana['data_inicio'],$ordem[$ordemIndex]);
+            $agendaController->marcarAgenda($semana->getDataInicio(),$ordem[$ordemIndex]);
             $ordemIndex+=1;
         }
 

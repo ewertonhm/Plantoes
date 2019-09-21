@@ -1,9 +1,8 @@
 <?php
-
-use Base\PlantoesJuizesQuery as BasePlantoesJuizesQuery;
+use Base\JuizesQuery as BaseJuizesQuery;
 
 /**
- * Skeleton subclass for performing query and update operations on the 'plantoes_juizes' table.
+ * Skeleton subclass for performing query and update operations on the 'juizes' table.
  *
  *
  *
@@ -12,7 +11,7 @@ use Base\PlantoesJuizesQuery as BasePlantoesJuizesQuery;
  * long as it does not already exist in the output directory.
  *
  */
-class PlantoesJuizesQuery extends BasePlantoesJuizesQuery
+class JuizesQuery extends BaseJuizesQuery
 {
 
 }

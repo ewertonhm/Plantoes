@@ -1,9 +1,8 @@
 <?php
-
-use Base\Cidades as BaseCidades;
+use Base\Juizes as BaseJuizes;
 
 /**
- * Skeleton subclass for representing a row from the 'cidades' table.
+ * Skeleton subclass for representing a row from the 'juizes' table.
  *
  *
  *
@@ -12,7 +11,7 @@ use Base\Cidades as BaseCidades;
  * long as it does not already exist in the output directory.
  *
  */
-class Cidades extends BaseCidades
+class Juizes extends BaseJuizes
 {
 
 }

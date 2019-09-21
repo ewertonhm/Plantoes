@@ -1,9 +1,8 @@
 <?php
-
-use Base\DiasIndisponiveis as BaseDiasIndisponiveis;
+use Base\PlantoesQuery as BasePlantoesQuery;
 
 /**
- * Skeleton subclass for representing a row from the 'dias_indisponiveis' table.
+ * Skeleton subclass for performing query and update operations on the 'plantoes' table.
  *
  *
  *
@@ -12,7 +11,7 @@ use Base\DiasIndisponiveis as BaseDiasIndisponiveis;
  * long as it does not already exist in the output directory.
  *
  */
-class DiasIndisponiveis extends BaseDiasIndisponiveis
+class PlantoesQuery extends BasePlantoesQuery
 {
 
 }

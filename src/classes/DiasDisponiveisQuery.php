@@ -1,9 +1,8 @@
 <?php
-
-use Base\Juizes as BaseJuizes;
+use Base\DiasDisponiveisQuery as BaseDiasDisponiveisQuery;
 
 /**
- * Skeleton subclass for representing a row from the 'juizes' table.
+ * Skeleton subclass for performing query and update operations on the 'dias_disponiveis' table.
  *
  *
  *
@@ -12,7 +11,7 @@ use Base\Juizes as BaseJuizes;
  * long as it does not already exist in the output directory.
  *
  */
-class Juizes extends BaseJuizes
+class DiasDisponiveisQuery extends BaseDiasDisponiveisQuery
 {
 
 }

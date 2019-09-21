@@ -1,9 +1,8 @@
 <?php
-
-use Base\CidadesQuery as BaseCidadesQuery;
+use Base\Usuarios as BaseUsuarios;
 
 /**
- * Skeleton subclass for performing query and update operations on the 'cidades' table.
+ * Skeleton subclass for representing a row from the 'usuarios' table.
  *
  *
  *
@@ -12,7 +11,7 @@ use Base\CidadesQuery as BaseCidadesQuery;
  * long as it does not already exist in the output directory.
  *
  */
-class CidadesQuery extends BaseCidadesQuery
+class Usuarios extends BaseUsuarios
 {
 
 }

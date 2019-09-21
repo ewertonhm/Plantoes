@@ -1,9 +1,8 @@
 <?php
-
-use Base\UsuariosQuery as BaseUsuariosQuery;
+use Base\PlantoesJuizes as BasePlantoesJuizes;
 
 /**
- * Skeleton subclass for performing query and update operations on the 'usuarios' table.
+ * Skeleton subclass for representing a row from the 'plantoes_juizes' table.
  *
  *
  *
@@ -12,7 +11,7 @@ use Base\UsuariosQuery as BaseUsuariosQuery;
  * long as it does not already exist in the output directory.
  *
  */
-class UsuariosQuery extends BaseUsuariosQuery
+class PlantoesJuizes extends BasePlantoesJuizes
 {
 
 }

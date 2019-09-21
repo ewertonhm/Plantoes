@@ -1,9 +1,11 @@
 <?php
 
-use Base\PlantoesJuizes as BasePlantoesJuizes;
+
+
+use Base\Agendas as BaseAgendas;
 
 /**
- * Skeleton subclass for representing a row from the 'plantoes_juizes' table.
+ * Skeleton subclass for representing a row from the 'agendas' table.
  *
  *
  *
@@ -12,7 +14,7 @@ use Base\PlantoesJuizes as BasePlantoesJuizes;
  * long as it does not already exist in the output directory.
  *
  */
-class PlantoesJuizes extends BasePlantoesJuizes
+class Agendas extends BaseAgendas
 {
 
 }
