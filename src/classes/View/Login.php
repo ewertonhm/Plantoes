@@ -17,7 +17,7 @@ class Login
                     <div class="mdl-layout-spacer"></div>
                         <div class="mdl-cell mdl-cell--4-col ">
                             <br><br><br><br>
-                            <form action="" method="post">
+                            <form action="" method="post" autocomplete="off">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 TAG;
         if($id != NULL){

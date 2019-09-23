@@ -1,9 +1,7 @@
 <?php
 
-// TO-DO
-
 use View\LayoutPadrao;
-use View\Tabela;
+use View\UserForm;
 
 require_once 'config.php';
 
@@ -16,5 +14,9 @@ if(!$login->isLogged()){
 $layout = new LayoutPadrao();
 $layout->inicio('Cadastro de Usuários','cadastrar-usuario.php');
 
-
+$form = new UserForm();
+var_dump($_POST['btn-cadastrar']);
+if(isset($_POST['btn-cadastrar'])){
+    echo "<script>alert('ggizi');</script>";
+}
 $layout->fim();

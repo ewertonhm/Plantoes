@@ -5,7 +5,7 @@ $serviceContainer->setAdapterClass('default', 'pgsql');
 $manager = new \Propel\Runtime\Connection\ConnectionManagerSingle();
 $manager->setConfiguration(array (
   'classname' => 'Propel\\Runtime\\Connection\\ConnectionWrapper',
-  'dsn' => 'pgsql:host=ewerton.gq;port=5432;dbname=plantoes',
+  'dsn' => 'pgsql:host=186.227.129.86;port=5432;dbname=plantoes',
   'user' => 'postgres',
   'password' => 'A1cdl33$2',
   'attributes' =>

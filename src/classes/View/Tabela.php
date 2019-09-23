@@ -16,14 +16,13 @@ class Tabela
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-cell mdl-shadow--2dp mdl-color--white mdl-cell--12-col">
                 <div class="mdl-grid mdl-cell--stretch	">
-                        <div class="mdl-cell ">
+                    <div class="mdl-cell ">
 TAG;
         echo "
         <table class='mdl-data-table mdl-js-data-table'>
         <thead>
         <tr>
         ";
-        $index = 0;
         foreach ($header as $head){
             echo "<th class='mdl-data-table__cell--non-numeric'>";
 
