@@ -9,16 +9,13 @@ $login = new Controller\Login();
 if($login->isLogged()){
     header('location: index.php');
 } else {
-    $layout = new LayoutPadrao();
-    $layout->inicio('Login');
-    $body = new Login();
-    $layout->fim();
     if(isset($_POST['btn-login'])){
         $usuario = $login->login($_POST['login'],$_POST['password']);
         if(isset($usuario) AND $usuario != false){
             $id = $usuario->getId();
         }
         if(isset($id) AND $id != NULL){
+            header("location: index.php");
             echo "<script>";
             echo "location.reload();";
             echo "</script>";
@@ -28,5 +25,9 @@ if($login->isLogged()){
             echo "</script>";
         }
     }
+    $layout = new LayoutPadrao();
+    $layout->inicio('Login');
+    $body = new Login();
+    $layout->fim();
 }
 ?>

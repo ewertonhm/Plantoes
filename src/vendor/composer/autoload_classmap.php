@@ -55,6 +55,7 @@ return array(
     'PlantoesQuery' => $baseDir . '/classes/PlantoesQuery.php',
     'Usuarios' => $baseDir . '/classes/Usuarios.php',
     'UsuariosQuery' => $baseDir . '/classes/UsuariosQuery.php',
+    'View\\DelForm' => $baseDir . '/classes/View/DelForm.php',
     'View\\LayoutPadrao' => $baseDir . '/classes/View/LayoutPadrao.php',
     'View\\Login' => $baseDir . '/classes/View/Login.php',
     'View\\Tabela' => $baseDir . '/classes/View/Tabela.php',

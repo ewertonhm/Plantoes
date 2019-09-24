@@ -170,6 +170,7 @@ class ComposerStaticInit3e0cace9835689a825fc02759e8ac1eb
         'PlantoesQuery' => __DIR__ . '/../..' . '/classes/PlantoesQuery.php',
         'Usuarios' => __DIR__ . '/../..' . '/classes/Usuarios.php',
         'UsuariosQuery' => __DIR__ . '/../..' . '/classes/UsuariosQuery.php',
+        'View\\DelForm' => __DIR__ . '/../..' . '/classes/View/DelForm.php',
         'View\\LayoutPadrao' => __DIR__ . '/../..' . '/classes/View/LayoutPadrao.php',
         'View\\Login' => __DIR__ . '/../..' . '/classes/View/Login.php',
         'View\\Tabela' => __DIR__ . '/../..' . '/classes/View/Tabela.php',
