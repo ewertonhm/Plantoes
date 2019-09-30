@@ -37,6 +37,10 @@ class ComposerStaticInit3e0cace9835689a825fc02759e8ac1eb
         array (
             'Monolog\\' => 8,
         ),
+        'L' => 
+        array (
+            'League\\Plates\\' => 14,
+        ),
         'C' => 
         array (
             'Carbon\\' => 7,
@@ -103,6 +107,10 @@ class ComposerStaticInit3e0cace9835689a825fc02759e8ac1eb
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'League\\Plates\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/plates/src',
         ),
         'Carbon\\' => 
         array (
