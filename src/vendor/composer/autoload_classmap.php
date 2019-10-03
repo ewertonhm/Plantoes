@@ -31,6 +31,7 @@ return array(
     'Controller\\Agenda' => $baseDir . '/classes/Controller/Agenda.php',
     'Controller\\DistribuicaoAutomatica' => $baseDir . '/classes/Controller/DistribuicaoAutomatica.php',
     'Controller\\Login' => $baseDir . '/classes/Controller/Login.php',
+    'Controller\\User' => $baseDir . '/classes/Controller/User.php',
     'DiasDisponiveis' => $baseDir . '/classes/DiasDisponiveis.php',
     'DiasDisponiveisQuery' => $baseDir . '/classes/DiasDisponiveisQuery.php',
     'DiasIndisponiveis' => $baseDir . '/classes/DiasIndisponiveis.php',

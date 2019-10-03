@@ -104,7 +104,7 @@
             <!--<img src="assets/images/user.jpg" class="demo-avatar">-->
             <div class="demo-avatar-dropdown">
             <span>
-                {% if username is define %}
+                {% if username is defined %}
                     {{ username }}
                 {% endif %}
             </span>
@@ -116,7 +116,7 @@
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
                     {% if usuarios %}
                         {% for usuario in usuarios %}
-                            <a class='mdl-navigation__link' href='change-user.php?id="{{ usuario.id }}'>
+                            <a class='mdl-navigation__link' href='change-user.php?id={{ usuario.id }}'>
                                 <li class='mdl-menu__item'>
                                     {{ usuario.nome }}
                                 </li>
@@ -130,7 +130,7 @@
             </div>
         </header><!-- USER CARD FIM -->
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800"><!-- BARRA LATERAL INICIO -->
-            {% if username is defined %}
+            {% if username %}
                 <a class="mdl-navigation__link" href="index.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Inicio</a>
                 <a class="mdl-navigation__link" href="plantoes.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">calendar_today</i>Plantões</a>
                 <a class="mdl-navigation__link" href="juizes.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">portrait</i>Juízes</a>

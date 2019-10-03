@@ -161,6 +161,7 @@ class ComposerStaticInit3e0cace9835689a825fc02759e8ac1eb
         'Controller\\Agenda' => __DIR__ . '/../..' . '/classes/Controller/Agenda.php',
         'Controller\\DistribuicaoAutomatica' => __DIR__ . '/../..' . '/classes/Controller/DistribuicaoAutomatica.php',
         'Controller\\Login' => __DIR__ . '/../..' . '/classes/Controller/Login.php',
+        'Controller\\User' => __DIR__ . '/../..' . '/classes/Controller/User.php',
         'DiasDisponiveis' => __DIR__ . '/../..' . '/classes/DiasDisponiveis.php',
         'DiasDisponiveisQuery' => __DIR__ . '/../..' . '/classes/DiasDisponiveisQuery.php',
         'DiasIndisponiveis' => __DIR__ . '/../..' . '/classes/DiasIndisponiveis.php',

@@ -1,0 +1,34 @@
+{%  extends "LayoutPadrao.twig" %}
+
+{%  block content %}
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-shadow--2dp mdl-color--white mdl-cell--12-col">
+        <div class="mdl-grid mdl-cell--stretch	">
+            <div class="mdl-cell ">
+                <table class='mdl-data-table mdl-js-data-table'>
+                    <thead>
+                        <tr>
+                        {% for head in header %}
+                            {% if ordem is defined %}
+                                <a class='mdl-navigation__link' href='{{ ordem }}?ordem={{ head }}'>
+                            {% endif %}
+                            <th class='mdl-data-table__cell--non-numeric'>
+                                {{ head }}
+                            </th>
+                            {% if ordem is defined %}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+
+{% endblock %}
