@@ -1,8 +1,5 @@
 <?php
 
-use View\LayoutPadrao;
-use View\TabelaAgenda;
-
 require_once 'config.php';
 
 $login = new Controller\Login();
@@ -10,31 +7,33 @@ if(!$login->isLogged()){
     header('location: login.php');
 }
 
-$layout = new LayoutPadrao();
+$loader = new \Twig\Loader\FilesystemLoader('classes/View');
+$twig = new \Twig\Environment($loader);
 
-$layout->inicio('Inicio');
-
+$template = $twig->load('Index.twig');
 
 $juizes = JuizesQuery::create()->find();
 $agenda = AgendasQuery::create()->findByAno(2019);
 
-$juiz = [];
-$dataInicio = [];
-$dataFim = [];
+$dias = [];
+$index = 0;
 
 foreach ($agenda as $a){
-    $dataInicio[] = $a->getDataInicio('d-m-Y');
-    $dataFim[] = $a->getDataFim('d-m-Y');
+    $dias[$index]['inicio'] = $a->getDataInicio('d-m-Y');
+    $dias[$index]['fim'] = $a->getDataFim('d-m-Y');
     if($a->getJuizId() != NULL){
         $j = $a->getJuizes();
-        $juiz[] = $j->getNome();
+        $dias[$index]['juiz'] = $j->getNome();
     } else {
-        $juiz[] = '';
+        $dias[$index]['juiz'] = '';
     }
-
+    $index++;
 }
 
-$table = new TabelaAgenda($dataInicio,$dataFim,$juiz);
+echo $template->render([
+    'title'=>'Pagina Inicial',
+    'username'=>Controller\User::getUserName(),
+    'usuarios'=>Controller\User::getUsuarios(),
+    'dias'=>$dias
+]);
 
-
-$layout->fim();

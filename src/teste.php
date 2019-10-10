@@ -12,37 +12,27 @@ $twig = new \Twig\Environment($loader);
 
 $template = $twig->load('Tabela.twig');
 
+$usuarios = UsuariosQuery::create()->find();
+
+$array = [];
+$index = 0;
+$head = ['ID','LOGIN','NOME','',''];
+$buttons = ['alterar-usuario.php','deletar-usuario.php'];
+
+foreach ($usuarios as $usuario){
+    $content = [$usuario->getId(),$usuario->getLogin(),$usuario->getNome()];
+    $array[$index]['head'] = $head;
+    $array[$index]['content']= $content;
+    $index++;
+}
 
 echo $template->render([
     'title'=>'Pagina Inicial',
     'username'=>Controller\User::getUserName(),
-    'usuarios'=>Controller\User::getUsuarios()
+    'usuarios'=>Controller\User::getUsuarios(),
+    'table'=>$array,
+    'buttons'=>$buttons
 ]);
 
-$juizes = JuizesQuery::create()->find();
-$agenda = AgendasQuery::create()->findByAno(2019);
-
-$juiz = [];
-$dataInicio = [];
-$dataFim = [];
-
-foreach ($agenda as $a){
-    $dataInicio[] = $a->getDataInicio('d-m-Y');
-    $dataFim[] = $a->getDataFim('d-m-Y');
-    if($a->getJuizId() != NULL){
-        $j = $a->getJuizes();
-        $juiz[] = $j->getNome();
-    } else {
-        $juiz[] = '';
-    }
-
-}
-
-
-
-
-echo $template->renderBlock('content',[
-    'header'=>['INICIO','FIM','JUIZ'],
-    'fields'=>$dataFim,
-    'ordem'=>''
-]);
+echo "<pre>";
+var_dump($array);

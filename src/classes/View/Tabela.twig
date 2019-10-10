@@ -8,7 +8,7 @@
                 <table class='mdl-data-table mdl-js-data-table'>
                     <thead>
                         <tr>
-                        {% for head in header %}
+                        {% for head in table.0.head %}
                             {% if ordem is defined %}
                                 <a class='mdl-navigation__link' href='{{ ordem }}?ordem={{ head }}'>
                             {% endif %}
@@ -22,7 +22,31 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        {% for t in table %}
+                            <tr>
+                                {% for c in t.content %}
+                                    <td class="mdl-data-table__cell--non-numeric">{{ c }}</td>
+                                {% endfor %}
+                                {% if buttons %}
+                                    {% for button in buttons %}
+                                        <td class='mdl-data-table__cell--non-numeric'>
+                                            <a class='mdl-navigation__link' href='{{ button }}?id={{ t.content.0 }}'>
+                                                <button class='mdl-button mdl-js-button mdl-button--icon'>
+                                                    {% if button|slice(0,3) == 'alt' %}
+                                                        <div id='alter-user{{ t.content.0 }}' class='icon material-icons'>edit</div>
+                                                        <div class='mdl-tooltip' data-mdl-for='alter-user{{ t.content.0 }}'>Editar</div>
+                                                    {% endif %}
+                                                    {% if button|slice(0,3) == 'del' %}
+                                                        <div id='del-user{{ t.content.0 }}' class='icon material-icons'>delete_swip</div>
+                                                        <div class='mdl-tooltip' data-mdl-for='del-user{{ t.content.0 }}'>Deletar</div>
+                                                    {% endif %}
+                                                </button>
+                                            </a>
+                                        </td>
+                                    {% endfor %}
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

@@ -1,0 +1,32 @@
+{%  extends "LayoutPadrao.twig" %}
+
+{%  block content %}
+
+<div class="mdl-layout-spacer"></div>
+<div class="mdl-cell mdl-shadow--2dp mdl-color--white mdl-cell--12-col">
+    <div class="mdl-grid mdl-cell--stretch	">
+        <div class="mdl-cell ">
+            <table class='mdl-data-table mdl-js-data-table'>
+                <thead>
+                <tr>
+                    <th class='mdl-data-table__cell--non-numeric'>INICIO</th>
+                    <th class='mdl-data-table__cell--non-numeric'>FIM</th>
+                    <th class='mdl-data-table__cell--non-numeric'>JUIZ</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for dia in dias %}
+                <tr>
+                    <td class='mdl-data-table__cell--non-numeric'>{{ dia.inicio }}</td>
+                    <td class='mdl-data-table__cell--non-numeric'>{{ dia.fim }}</td>
+                    <td class='mdl-data-table__cell--non-numeric'>{{ dia.juiz }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="mdl-layout-spacer"></div>
+    </div>
+</div>
+<div class="mdl-layout-spacer"></div>
+{% endblock %}

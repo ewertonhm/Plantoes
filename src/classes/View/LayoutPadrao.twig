@@ -1,3 +1,4 @@
+{% block head %}
 <!doctype html>
 <!--
   Material Design Lite
@@ -146,11 +147,13 @@
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid content"><!-- DIV DA AREA LATERAL FIM -->
+            {% endblock %}
             <!-- CONTUDO INICIO -->
                 {% block content %}
 
                 {% endblock %}
             <!-- CONTEUDO FIM  -->
+            {% block foot %}
         </div>
     </main>
 </div>
@@ -204,3 +207,4 @@
 <script src="assets/js/material.min.js"></script>
 </body>
 </html>
+{% endblock %}
