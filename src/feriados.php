@@ -42,6 +42,16 @@ foreach ($data as $d){
     $cidades[] = $c->getNome();
 }
 
+foreach ($data as $d){
+    $c = $d->getCidades();
+    $content = [$d->getId(),$d->getNome(),$d->getData(),$c->getNome()];
+    $array[$index]['head'] = $head;
+    $array[$index]['content']= $content;
+    $index++;
+}
+
+
+
 $header = ['ID','NOME','DATA','CIDADE','',''];
 $fields = [$ids,$nomes,$datas,$cidades];
 $buttons = ['alterar-feriado.php','deletar-feriado.php'];

@@ -33,6 +33,3 @@ echo $template->render([
     'table'=>$array,
     'buttons'=>$buttons
 ]);
-
-echo "<pre>";
-var_dump($array);

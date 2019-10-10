@@ -1,9 +1,5 @@
 <?php
 
-
-use View\LayoutPadrao;
-use View\Tabela;
-
 require_once 'config.php';
 
 $login = new Controller\Login();
@@ -11,27 +7,29 @@ if(!$login->isLogged()){
     header('location: login.php');
 }
 
-$layout = new LayoutPadrao();
-$layout->inicio('Usuários','cadastrar-usuario.php');
+$loader = new \Twig\Loader\FilesystemLoader('classes/View');
+$twig = new \Twig\Environment($loader);
 
+$template = $twig->load('Tabela.twig');
 
+$usuarios = UsuariosQuery::create()->find();
 
-
-$usuarios = UsuariosQuery::create()->orderById()->find();
-$ids = [];
-$logins = [];
-$nomes = [];
-
-foreach ($usuarios as $user){
-    $ids[] = $user->getId();
-    $logins[] = $user->getLogin();
-    $nomes[] = $user->getNome();
-}
-
-$header = ['ID','NOME','LOGIN','',''];
-$fields = [$ids,$nomes,$logins];
+$array = [];
+$index = 0;
+$head = ['ID','LOGIN','NOME','',''];
 $buttons = ['alterar-usuario.php','deletar-usuario.php'];
 
-$table = new Tabela($header,$fields,$buttons);
+foreach ($usuarios as $usuario){
+    $content = [$usuario->getId(),$usuario->getLogin(),$usuario->getNome()];
+    $array[$index]['head'] = $head;
+    $array[$index]['content']= $content;
+    $index++;
+}
 
-$layout->fim();
+echo $template->render([
+    'title'=>'Pagina Inicial',
+    'username'=>Controller\User::getUserName(),
+    'usuarios'=>Controller\User::getUsuarios(),
+    'table'=>$array,
+    'buttons'=>$buttons
+]);
