@@ -9,15 +9,16 @@
                     <thead>
                         <tr>
                         {% for head in table.0.head %}
-                            {% if ordem is defined %}
-                                <a class='mdl-navigation__link' href='{{ ordem }}?ordem={{ head }}'>
-                            {% endif %}
                             <th class='mdl-data-table__cell--non-numeric'>
+                                {% if ordem is defined %}
+                                    <a class='mdl-navigation__link' href='{{ ordem }}?ordem={{ head }}'>
+                                {% endif %}
                                 {{ head }}
+                                {% if ordem is defined %}
+                                    </a>
+                                {% endif %}
                             </th>
-                            {% if ordem is defined %}
-                                </a>
-                            {% endif %}
+
                         {% endfor %}
                         </tr>
                     </thead>

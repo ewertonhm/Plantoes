@@ -1,9 +1,5 @@
 <?php
 
-
-use View\LayoutPadrao;
-use View\Tabela;
-
 require_once 'config.php';
 
 $login = new Controller\Login();
@@ -11,25 +7,36 @@ if(!$login->isLogged()){
     header('location: login.php');
 }
 
-$layout = new LayoutPadrao();
-$layout->inicio('Cidades','cadastrar-cidade.php');
+$loader = new \Twig\Loader\FilesystemLoader('classes/View');
+$twig = new \Twig\Environment($loader);
 
+$template = $twig->load('Tabela.twig');
 
-
-
-$cidades = CidadesQuery::create()->orderById()->find();
-$ids = [];
-$nomes = [];
-
-foreach ($cidades as $c){
-    $ids[] = $c->getId();
-    $nomes[] = $c->getNome();
+$cidades = CidadesQuery::create()->find();
+if(isset($_GET['ordem'])){
+    if($_GET['ordem'] == 'ID'){
+        $cidades = CidadesQuery::create()->orderById()->find();
+    } elseif ($_GET['ordem'] == 'NOME'){
+        $cidades = CidadesQuery::create()->orderByNome()->find();
+    }
 }
 
-$header = ['ID','NOME','',''];
-$fields = [$ids,$nomes];
-$buttons = ['alterar-cidade.php','deletar-cidade.php'];
+$array = [];
+$index = 0;
+$head = ['ID','NOME','',''];
 
-$table = new Tabela($header,$fields,$buttons);
+foreach ($cidades as $cidade){
+    $content = [$cidade->getId(),$cidade->getNome()];
+    $array[$index]['head'] = $head;
+    $array[$index]['content']= $content;
+    $index++;
+}
 
-$layout->fim();
+echo $template->render([
+    'title'=>'Cidades',
+    'username'=>Controller\User::getUserName(),
+    'usuarios'=>Controller\User::getUsuarios(),
+    'ordem'=>'cidades.php',
+    'table'=>$array,
+    'buttons'=>['alterar-cidade.php','deletar-cidade.php']
+]);

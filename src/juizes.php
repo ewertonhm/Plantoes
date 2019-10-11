@@ -1,9 +1,5 @@
 <?php
 
-
-use View\LayoutPadrao;
-use View\Tabela;
-
 require_once 'config.php';
 
 $login = new Controller\Login();
@@ -11,30 +7,41 @@ if(!$login->isLogged()){
     header('location: login.php');
 }
 
-$layout = new LayoutPadrao();
-$layout->inicio('Juízes','cadastrar-juiz.php');
+$loader = new \Twig\Loader\FilesystemLoader('classes/View');
+$twig = new \Twig\Environment($loader);
 
+$template = $twig->load('Tabela.twig');
 
-
-
-$data = JuizesQuery::create()->orderById()->find();
-$ids = [];
-$nomes = [];
-$telefones = [];
-$cidades = [];
-
-foreach ($data as $d){
-    $ids[] = $d->getId();
-    $nomes[] = $d->getNome();
-    $telefones[] = $d->getTelefone();
-    $c = $d->getCidades();
-    $cidades[] = $c->getNome();
+$juizes = JuizesQuery::create()->find();
+if(isset($_GET['ordem'])){
+    if($_GET['ordem'] == 'ID'){
+        $juizes = JuizesQuery::create()->orderById()->find();
+    } elseif ($_GET['ordem'] == 'TELEFONE') {
+        $juizes = JuizesQuery::create()->orderByTelefone()->find();
+    } elseif ($_GET['ordem'] == 'NOME'){
+        $juizes = JuizesQuery::create()->orderByNome()->find();
+    } elseif ($_GET['ordem'] == 'CIDADE'){
+        $juizes = JuizesQuery::create()->orderByCidadeId()->find();
+    }
 }
 
-$header = ['ID','NOME','TELEFONE','CIDADE','',''];
-$fields = [$ids,$nomes,$telefones,$cidades];
-$buttons = ['alterar-juiz.php','deletar-juiz.php'];
+$array = [];
+$index = 0;
+$head = ['ID','NOME','TELEFONE','CIDADE','',''];
 
-$table = new Tabela($header,$fields,$buttons);
+foreach ($juizes as $juiz){
+    $cidade = CidadesQuery::create()->findOneById($juiz->getCidadeId());
+    $content = [$juiz->getId(),$juiz->getNome(),$juiz->getTelefone(),$cidade->getNome()];
+    $array[$index]['head'] = $head;
+    $array[$index]['content']= $content;
+    $index++;
+}
 
-$layout->fim();
+echo $template->render([
+    'title'=>'Juízes',
+    'username'=>Controller\User::getUserName(),
+    'usuarios'=>Controller\User::getUsuarios(),
+    'ordem'=>'juizes.php',
+    'table'=>$array,
+    'buttons'=>['alterar-juiz.php','deletar-juiz.php']
+]);

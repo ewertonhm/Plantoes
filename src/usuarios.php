@@ -13,11 +13,19 @@ $twig = new \Twig\Environment($loader);
 $template = $twig->load('Tabela.twig');
 
 $usuarios = UsuariosQuery::create()->find();
+if(isset($_GET['ordem'])){
+    if($_GET['ordem'] == 'ID'){
+        $usuarios = UsuariosQuery::create()->orderById()->find();
+    } elseif ($_GET['ordem'] == 'LOGIN') {
+        $usuarios = UsuariosQuery::create()->orderByLogin()->find();
+    } elseif ($_GET['ordem'] == 'NOME'){
+        $usuarios = UsuariosQuery::create()->orderByNome()->find();
+    }
+}
 
 $array = [];
 $index = 0;
 $head = ['ID','LOGIN','NOME','',''];
-$buttons = ['alterar-usuario.php','deletar-usuario.php'];
 
 foreach ($usuarios as $usuario){
     $content = [$usuario->getId(),$usuario->getLogin(),$usuario->getNome()];
@@ -27,9 +35,10 @@ foreach ($usuarios as $usuario){
 }
 
 echo $template->render([
-    'title'=>'Pagina Inicial',
+    'title'=>'Usuários',
     'username'=>Controller\User::getUserName(),
     'usuarios'=>Controller\User::getUsuarios(),
+    'ordem'=>'usuarios.php',
     'table'=>$array,
-    'buttons'=>$buttons
+    'buttons'=>['alterar-usuario.php','deletar-usuario.php']
 ]);
